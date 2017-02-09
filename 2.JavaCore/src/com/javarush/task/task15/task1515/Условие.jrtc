@@ -1,0 +1,7 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1515">
+<h3>Статики 2</h3>
+<p>1. В статическом блоке считайте две переменные с консоли <mark class="user">А</mark> и <mark class="user">В</mark> с типом <span class="text-corporate">int</span>.<br />
+2. Не забыть про <strong>IOException</strong>, который надо обработать в блоке <strong>catch</strong>.<br />
+3. Закрыть поток ввода методом <mark>close()</mark>.</p>
+
+</div>

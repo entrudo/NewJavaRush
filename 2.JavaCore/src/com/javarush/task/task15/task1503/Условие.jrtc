@@ -1,0 +1,13 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1503">
+<h3>ООП - машинки</h3>
+<p>1. Для вывода используй только переменные из класса <span class="text-corporate"><strong>Constants</strong></span>.<br />
+2. В классе Ferrari реализуйте метод <mark>printlnDesire</mark>, чтобы он выводил на экран &#171;<em><strong>Я хочу ездить на Феррари</strong></em>&#171;.<br />
+3. В классе <span class="text-corporate"><strong>Lanos</strong></span> реализуйте метод <mark>printlnDesire</mark>, чтобы он выводил на экран &#171;<em><strong>Я хочу ездить на Ланосе</strong></em>&#171;.<br />
+4. Создайте <span class="text-corporate"><strong>public static</strong></span> класс <span class="text-corporate"><strong>LuxuriousCar</strong></span>(<strong>РоскошнаяМашина</strong>).<br />
+5. Создайте <span class="text-corporate"><strong>public static</strong></span> класс <span class="text-corporate"><strong>CheapCar</strong></span>(<strong>ДешеваяМашина</strong>).<br />
+6. Унаследуйте <span class="text-corporate"><strong>Ferrari</strong></span> и <span class="text-corporate"><strong>Lanos</strong></span> от <span class="text-corporate"><strong>CheapCar</strong></span> и <span class="text-corporate"><strong>LuxuriousCar</strong></span>, подумайте, какой класс для кого.<br />
+7. В классе <span class="text-corporate"><strong>LuxuriousCar</strong></span> реализуйте метод printlnDesire, чтобы он выводил на экран &#171;<em><strong>Я хочу ездить на роскошной машине</strong></em>&#171;.<br />
+8. В классе <span class="text-corporate"><strong>CheapCar</strong></span> реализуйте метод <mark>printlnDesire</mark>, чтобы он выводил на экран &#171;<em><strong>Я хочу ездить на дешевой машине</strong></em>&#171;.<br />
+9. В классах <strong><span class="text-corporate">LuxuriousCar</span></strong> и <span class="text-corporate"><strong>CheapCar</strong></span> для метода <mark>printlnDesire</mark> расставьте различными способами модификаторы доступа так, чтобы в классах <span class="text-corporate"><strong>Ferrari</strong></span> и <span class="text-corporate"><strong>Lanos</strong></span> выполнялось расширение видимости.</p>
+
+</div>

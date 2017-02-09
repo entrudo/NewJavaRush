@@ -1,0 +1,5 @@
+<div class="wdghtml" taskKey="com.javarush.task.task06.task0619">
+<h3>Три статические переменных name</h3>
+<p>Добавь <strong>3</strong> <mark>public</mark> статических переменных: <span class="text-corporate">String</span> <mark class="user">Solution.name</mark>, <span class="text-corporate">String</span> <mark class="user">Cat.name</mark>, <span class="text-corporate">String</span> <mark class="user">Dog.name</mark>.</p>
+
+</div>

@@ -1,0 +1,9 @@
+<div class="wdghtml" taskKey="com.javarush.task.task10.task1016">
+<h3>Одинаковые слова в списке</h3>
+<p>Ввести с клавиатуры в список <span class="text-user"><strong>20</strong></span> слов.<br />
+Нужно подсчитать <strong>количество одинаковых слов</strong> в списке.<br />
+Результат нужно представить в виде словаря <span class="text-red"><strong>Map</strong>&lt;String, Integer&gt;</span>, где <strong>первый</strong> <strong>параметр</strong> – <strong>уникальная</strong> <strong>строка</strong>, а <strong>второй</strong> – <strong>число</strong>, сколько раз данная строка встречалась в списке.</p>
+<p><strong>Вывести содержимое словаря на экран.</strong><br />
+В тестах регистр (<em>большая/маленькая буква</em>) влияет на результат.</p>
+
+</div>

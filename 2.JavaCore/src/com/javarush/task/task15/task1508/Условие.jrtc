@@ -1,0 +1,6 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1508">
+<h3>ООП - Перегрузка - убираем лишнее</h3>
+<p>1. Подумайте, какая из реализаций метода <mark>print</mark> будет вызвана.<br />
+2. Удалите все лишние реализации метода <mark>print</mark>.</p>
+
+</div>

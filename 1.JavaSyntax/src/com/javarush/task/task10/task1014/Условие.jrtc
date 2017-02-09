@@ -1,0 +1,5 @@
+<div class="wdghtml" taskKey="com.javarush.task.task10.task1014">
+<h3>Расставьте минимум static-ов</h3>
+<p>Расставьте как можно меньше модификаторов <span class="text-corporate"><strong>static</strong></span> так, чтобы пример скомпилировался.</p>
+
+</div>

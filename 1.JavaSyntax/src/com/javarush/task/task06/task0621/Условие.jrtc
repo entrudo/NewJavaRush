@@ -1,0 +1,26 @@
+<div class="wdghtml" taskKey="com.javarush.task.task06.task0621">
+<h3>Родственные связи кошек</h3>
+<p>Задача: У каждой кошки есть <strong>имя</strong> и <strong>кошка-мама</strong>.<br />
+Создать <span class="text-user">класс</span>, который бы описывал данную ситуацию.<br />
+Создать <span class="text-user">два объекта</span>: <strong>кошку-дочь</strong> и <strong>кошку-маму</strong>.<br />
+Вывести их на экран.</p>
+<p><strong>Новая задача:</strong> У каждой кошки есть <strong>имя</strong>, <strong>кошка-папа</strong> и <strong>кошка-мама</strong>.<br />
+Изменить класс <strong><span class="text-corporate">Cat</span></strong> так, чтобы он мог описать данную ситуацию.<br />
+Создать <strong>6 объектов</strong>: <strong>дедушку </strong>(<em>папин папа</em>), <strong>бабушку</strong> (<em>мамина мама</em>), <strong>папу</strong>, <strong>маму</strong>, <strong>сына</strong>, <strong>дочь</strong>.<br />
+Вывести их всех на экран в порядке: <strong>дедушка</strong>, <strong>бабушка</strong>, <strong>папа</strong>, <strong>мама</strong>, <strong>сын</strong>, <strong>дочь</strong>.</p>
+<p><strong>Пример ввода:</strong><br />
+<code>дедушка Вася<br />
+бабушка Мурка<br />
+папа Котофей<br />
+мама Василиса<br />
+сын Мурчик<br />
+дочь Пушинка</code></p>
+<p><strong>Пример вывода:</strong><br />
+<code>Cat name is дедушка Вася, no mother, no father<br />
+Cat name is бабушка Мурка, no mother, no father<br />
+Cat name is папа Котофей, no mother, father is дедушка Вася<br />
+Cat name is мама Василиса, mother is бабушка Мурка, no father<br />
+Cat name is сын Мурчик, mother is мама Василиса, father is папа Котофей<br />
+Cat name is дочь Пушинка, mother is мама Василиса, father is папа Котофей</code></p>
+
+</div>

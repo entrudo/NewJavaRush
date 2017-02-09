@@ -1,0 +1,8 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1526">
+<h3>Дебаг, дебаг, и еще раз дебаг</h3>
+<p>Программа выводит <span class="text-user"><strong>0 9</strong></span>, а должна<span class="text-user"><strong> 6 9</strong></span>. Найди одну! ошибку и исправь.<br />
+Используй дебаг. Для этого поставь <span class="text-neon">breakpoint-ы(Ctrl+F8)</span>, потом зайди в меню <span class="text-neon">Run -&gt; Debug</span>.<br />
+<strong><span class="text-neon">F9</span></strong> &#8212; выполнение кода до следующего <span class="text-neon">breakpoint-а</span><br />
+<span class="text-neon"><strong>F8</strong></span> &#8212; переход к следующей строке кода</p>
+
+</div>

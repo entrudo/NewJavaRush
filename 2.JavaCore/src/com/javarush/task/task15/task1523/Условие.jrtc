@@ -1,0 +1,8 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1523">
+<h3>Перегрузка конструкторов</h3>
+<p>1. В классе <span class="text-corporate"><strong>Solution</strong></span> создай <span class="text-user"><strong>4</strong></span> конструктора конструктора с разными модификаторами доступа.<br />
+2. В отдельном файле создай класс <span class="text-corporate"><strong>SubSolution</strong></span> и сделай его потомком класса <span class="text-corporate"><strong>Solution</strong></span>.<br />
+3. Внутри класса <span class="text-corporate"><strong>SubSolution</strong></span> создай конструкторы командой <span class="text-neon">Alt+Insert -&gt; Constructors</span>.<br />
+4. Исправь модификаторы доступа конструкторов в <strong><span class="text-corporate">SubSolution</span></strong> так, чтобы получилось <span class="text-user"><strong>3</strong></span> конструктора с различными модификаторами доступа(<strong>все кроме private</strong>).</p>
+
+</div>

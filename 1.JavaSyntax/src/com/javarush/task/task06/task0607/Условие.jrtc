@@ -1,0 +1,5 @@
+<div class="wdghtml" taskKey="com.javarush.task.task06.task0607">
+<h3>Классовый счетчик</h3>
+<p>Создать статическую переменную <span class="text-corporate">int</span> <mark class="user">catCount</mark> в классе <span class="text-corporate"><strong>Cat</strong></span>. Создай конструктор <mark>[public Cat()]</mark>, в котором увеличивай данную переменную на <span class="text-user"><strong>1</strong></span>.</p>
+
+</div>

@@ -1,0 +1,6 @@
+<div class="wdghtml" taskKey="com.javarush.task.task06.task0608">
+<h3>Статические методы для кошек</h3>
+<p>Добавить к классу <span class="text-corporate"><strong>Cat</strong></span> два статических метода: <mark>int getCatCount()</mark> и <mark>setCatCount(int)</mark>,<br />
+с помощью которых можно <span class="text-user">получить/изменить</span> количество котов (<em>переменную </em><mark class="user">catCount</mark>).</p>
+
+</div>

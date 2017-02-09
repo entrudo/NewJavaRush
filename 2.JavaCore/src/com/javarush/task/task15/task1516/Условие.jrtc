@@ -1,0 +1,13 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1516">
+<h3>Значения по-умолчанию</h3>
+<p>1. Создать <strong><span class="text-user">7</span> <span class="text-corporate">public</span></strong> полей класса. Убедитесь, что они инициализируются дефолтными значениями.<br />
+<mark class="user">intVar</mark> типа <span class="text-corporate">int</span><br />
+<mark class="user">doubleVar</mark> типа <span class="text-corporate">double</span><br />
+<mark class="user">DoubleVar</mark> типа <span class="text-corporate">Double</span><br />
+<mark class="user">booleanVar</mark> типа <span class="text-corporate">boolean</span><br />
+<mark class="user">ObjectVar</mark> типа <span class="text-corporate">Object</span><br />
+<mark class="user">ExceptionVar</mark> типа <span class="text-corporate">Exception</span><br />
+<mark class="user">StringVar</mark> типа <span class="text-corporate">String</span><br />
+2. В методе <mark>main</mark> вывести их значения в заданном порядке.</p>
+
+</div>

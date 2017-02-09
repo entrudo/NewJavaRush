@@ -1,0 +1,8 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1518">
+<h3>Статики 3</h3>
+<p>1. В классе <span class="text-corporate"><strong>Solution</strong></span> создай класс <span class="text-corporate"><strong>Cat</strong></span> с публичным полем <mark class="user">name</mark> типа <span class="text-corporate">String</span>.<br />
+2. В статическом блоке создай объект типа <strong><span class="text-corporate">Cat</span></strong> и присвой его переменной <mark class="user">cat</mark>(<strong>не забудь инициализировать поле</strong> <mark class="user">name</mark>).<br />
+3. В классе <span class="text-user"><strong>Cat</strong></span> не создавай конструкторы с параметрами.<br />
+4. В статическом блоке выведи имя созданного кота на экран.</p>
+
+</div>

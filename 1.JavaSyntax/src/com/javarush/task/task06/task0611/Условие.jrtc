@@ -1,0 +1,9 @@
+<div class="wdghtml" taskKey="com.javarush.task.task06.task0611">
+<h3>Класс StringHelper</h3>
+<p>Сделать класс <strong><span class="text-corporate">StringHelper</span></strong>, у которого будут <span class="text-user"><strong>2</strong></span> статических метода:<br />
+<mark>String multiply(String <strong>s</strong>, int <strong>count</strong>)</mark> – возвращает строку повторенную <mark class="user">count</mark> раз.<br />
+<mark>String multiply(String <strong>s</strong>)</mark> – возвращает строку повторенную <span class="text-user"><strong>5</strong></span> раз.</p>
+<p><strong>Пример:</strong><br />
+<code>Амиго -&gt; АмигоАмигоАмигоАмигоАмиго</code></p>
+
+</div>

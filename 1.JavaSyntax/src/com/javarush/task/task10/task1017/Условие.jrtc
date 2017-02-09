@@ -1,0 +1,10 @@
+<div class="wdghtml" taskKey="com.javarush.task.task10.task1017">
+<h3>Безопасное извлечение из списка</h3>
+<p>Создать список целых чисел.<br />
+Ввести с клавиатуры <span class="text-user"><strong>20</strong></span> целых чисел.<br />
+Создать метод по безопасному извлечению чисел из списка:<br />
+<mark>int safeGetElement(ArrayList&lt;Integer&gt; list, int index, int defaultValue)</mark><br />
+Метод должен возвращать элемент списка (<span class="text-red">list</span>) по его индексу (<span class="text-red">index</span>).<br />
+Если в процессе получения элемента возникло исключение, его нужно перехватить, и метод должен вернуть <strong><span class="text-neon">defaultValue</span></strong>.</p>
+
+</div>

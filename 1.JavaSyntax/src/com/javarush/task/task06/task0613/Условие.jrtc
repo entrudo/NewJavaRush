@@ -1,0 +1,6 @@
+<div class="wdghtml" taskKey="com.javarush.task.task06.task0613">
+<h3>Кот и статика</h3>
+<p>В классе <span class="text-corporate"><strong>Cat</strong></span> создай статическую переменную <mark>public int catCount</mark>.<br />
+Создай конструктор <mark>[public Cat()]</mark>. Пусть при каждом создании кота (<em>нового объекта</em> <mark class="green">Cat</mark>) статическая переменная <mark class="user">catCount</mark> увеличивается на <span class="text-user"><strong>1</strong></span>. Создать <span class="text-user"><strong>10</strong></span> объектов <mark class="green">Cat</mark> и вывести значение переменной <mark class="user">catCount</mark> на экран.</p>
+
+</div>

@@ -1,0 +1,24 @@
+<div class="wdghtml" taskKey="com.javarush.task.task09.task0930">
+<h3>Задача по алгоритмам</h3>
+<p>Задача: Пользователь вводит с клавиатуры <strong>список слов</strong> (<em>и чисел</em>).<br />
+<strong>Слова</strong> вывести в <strong>возрастающем</strong> порядке, <strong>числа</strong> &#8212; в <strong>убывающем</strong>.</p>
+<p><strong>Пример ввода:</strong><br />
+<code>Вишня<br />
+1<br />
+Боб<br />
+3<br />
+Яблоко<br />
+2<br />
+0<br />
+Арбуз</code></p>
+<p><strong>Пример вывода:</strong><br />
+<code>Арбуз<br />
+3<br />
+Боб<br />
+2<br />
+Вишня<br />
+1<br />
+0<br />
+Яблоко</code></p>
+
+</div>

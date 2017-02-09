@@ -1,0 +1,9 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1520">
+<h3>Тренировка мозга</h3>
+<p>Найти логическую ошибку: утка(<mark class="green">Duck</mark>) должна корректно реализовывать интерфейс <mark class="red">Movable</mark>.<br />
+<strong>Исправьте ошибку.</strong></p>
+<p><strong>Результат вывода в консоль должен быть:</strong><br />
+<code>flying<br />
+moving</code></p>
+
+</div>

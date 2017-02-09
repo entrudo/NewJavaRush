@@ -1,0 +1,6 @@
+<div class="wdghtml" taskKey="com.javarush.task.task08.task0828">
+<h3>Номер месяца</h3>
+<p>Программа вводит с клавиатуры <strong>имя месяца</strong> и выводит его номер на экран в виде: «<em><strong>May is 5 month</strong></em>».<br />
+<em>Используйте коллекции.</em></p>
+
+</div>

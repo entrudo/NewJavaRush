@@ -1,0 +1,6 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1501">
+<h3>ООП - Расставить интерфейсы</h3>
+<p>1. Добавь все возможные интерфейсы из <mark class="red">Movable</mark>, <mark class="red">Sellable</mark>, <mark class="red">Discountable</mark> в класс <span class="text-corporate"><strong>Clothes</strong></span>.<br />
+2. Реализуй их методы.</p>
+
+</div>

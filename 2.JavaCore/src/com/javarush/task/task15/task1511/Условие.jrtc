@@ -1,0 +1,6 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1511">
+<h3>Максимально простой код 1</h3>
+<p><strong> Упрости код</strong> &#8212; убери все наследования и реализации, которые и так будут добавлены автоматически при компиляции<br />
+<strong>PS:</strong> <em>Взаимосвязь между объектами</em> <mark class="green">me</mark><em> и </em><mark class="green">zapp</mark><em> &#8212; Has-a (использует): http://ru.wikipedia.org/wiki/Has-a</em></p>
+
+</div>

@@ -1,0 +1,7 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1521">
+<h3>ООП - перегрузка</h3>
+<p>1. В классе <span class="text-corporate"><strong>Tree</strong></span> перегрузи метод <mark>info(Object <strong>s</strong>)</mark> два раза так, чтобы получилось три метода <mark>info(Object <strong>s</strong>)</mark>, <mark>info(Number <strong>s</strong>)</mark>, <mark>info(String <strong>s</strong>)</mark>.<br />
+1.1. Разберись в методе <mark>info(Object <strong>s</strong>)</mark>. Сделай по аналогии функционал новых методов.<br />
+1.2. Например, для метода <mark>info(Number <strong>s</strong>)</mark> результат может быть таким &#171;<em><strong>Дерево № 123 , метод Number, параметр Short</strong></em>&#171;.</p>
+
+</div>

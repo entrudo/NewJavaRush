@@ -1,0 +1,5 @@
+<div class="wdghtml" taskKey="com.javarush.task.task10.task1018">
+<h3>Поправочки нужны</h3>
+<p>Задача: Программа демонстрирует работу <mark class="green">HashMap</mark>: вводит с клавиатуры набор пар (<strong><em>номер и строку</em></strong>), помещает их в <mark class="green">HashMap</mark> и выводит на экран содержимое <mark class="green">HashMap</mark>.</p>
+
+</div>

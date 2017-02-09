@@ -1,0 +1,22 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1527">
+<h3>Парсер реквестов</h3>
+<p>Считать с консоли <strong>URl</strong> ссылку.<br />
+Вывести на экран через пробел список всех параметров (<em>Параметры идут после ? и разделяются &amp;, например,</em> <strong>lvl</strong><em>=</em><span class="text-user"><strong>15</strong></span>).<br />
+<strong>URL</strong> содержит минимум <span class="text-user"><strong>1</strong></span> параметр.<br />
+Если присутствует параметр <mark class="user">obj</mark>, то передать его значение в нужный метод <mark>alert</mark>.<br />
+<mark>alert(double <strong>value</strong>)</mark> &#8212; для чисел (<em>дробные числа разделяются точкой</em>)<br />
+<mark>alert(String <strong>value</strong>)</mark> &#8212; для строк<br />
+Обрати внимание на то, что метод alert необходимо вызывать <strong>ПОСЛЕ</strong> вывода списка всех параметров на экран.</p>
+<p><strong>Пример 1</strong></p>
+<p><strong>Ввод:</strong><br />
+<code>http://javarush.ru/alpha/index.html?lvl=15&amp;view&amp;name=Amigo</code></p>
+<p><strong>Вывод:</strong><br />
+<code> lvl view name</code></p>
+<p><strong>Пример 2</strong></p>
+<p><strong>Ввод:</strong><br />
+<code>http://javarush.ru/alpha/index.html?obj=3.14&amp;name=Amigo</code></p>
+<p><strong>Вывод:</strong><br />
+<code> obj name<br />
+double 3.14</code></p>
+
+</div>

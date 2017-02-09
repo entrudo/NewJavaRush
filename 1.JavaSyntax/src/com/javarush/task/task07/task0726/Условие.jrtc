@@ -1,0 +1,8 @@
+<div class="wdghtml" taskKey="com.javarush.task.task07.task0726">
+<h3>Не компилируется задача про котиков</h3>
+<p>Задача: Программа вводит с клавиатуры <strong>данные про котов</strong> и выводит их на экран.</p>
+<p><strong>Пример:</strong><br />
+<code>Cat name is Barsik, age is 6, weight is 5, tail = 22<br />
+Cat name is Murka, age is 8, weight is 7, tail = 20</code></p>
+
+</div>

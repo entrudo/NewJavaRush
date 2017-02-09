@@ -1,0 +1,6 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1525">
+<h3>Файл в статическом блоке</h3>
+<p>1. Инициализируй переменную <strong><span class="text-corporate">Statics</span></strong>.<mark class="user">FILE_NAME</mark> полным путем к файлу с данными, который содержит несколько строк.<br />
+2. В статическом блоке считай из файла с именем <span class="text-corporate"><strong>Statics</strong></span>.<mark class="user">FILE_NAME</mark> все строки и добавь их по-отдельности в <strong><span class="text-red">List lines</span></strong>.</p>
+
+</div>

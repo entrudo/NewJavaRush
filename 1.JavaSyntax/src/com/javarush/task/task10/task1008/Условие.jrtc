@@ -1,0 +1,7 @@
+<div class="wdghtml" taskKey="com.javarush.task.task10.task1008">
+<h3>Правильный ответ: d=2.941</h3>
+<p>Добавить одну <strong>операцию по преобразованию типа</strong>, чтобы получался ответ: <span class="text-neon">d=2.941.</span></p>
+<p><strong>Пример вывода:</strong><br />
+<code>2.9411764705882355</code></p>
+
+</div>

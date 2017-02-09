@@ -1,0 +1,6 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1509">
+<h3>Мужчина или женщина?</h3>
+<p>1. Изменить метод <mark>printName</mark> так, чтобы он выполнялся для man и woman.<br />
+2. Реализация метода <mark>printName</mark> должна быть одна.</p>
+
+</div>

@@ -1,0 +1,11 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1506">
+<h3>Что-то лишнее</h3>
+<p><strong>1. Программа должна выводить следующее:</strong><br />
+<code>Это double<br />
+Это Object<br />
+Это double<br />
+Это Integer<br />
+Это double</code></p>
+<p><strong>2. Удали реализации всех лишних методов</strong></p>
+
+</div>

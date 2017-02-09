@@ -1,0 +1,12 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1529">
+<h3>Осваивание статического блока</h3>
+<p>1. В отдельных файлах создать классы <span class="text-corporate"><strong>Plane</strong></span> и <span class="text-corporate"><strong>Helicopter</strong></span>, реализующие интерфейс <mark class="red">Flyable</mark>.<br />
+2. Класс <span class="text-corporate"><strong>Plane</strong></span> должен иметь конструктор с параметром <span class="text-corporate">int</span> &#8212; количество перевозимых пассажиров.<br />
+3. В статическом методе reset класса <span class="text-corporate"><strong>Solution</strong></span>:<br />
+3.1. Считать с консоли параметр типа <span class="text-corporate">String</span>.<br />
+3.2. Если параметр равен &#171;<em><strong>helicopter</strong></em>&#171;, то статическому объекту <mark class="green">Flyable</mark> <strong>result</strong> присвоить объект класса <span class="text-corporate"><strong>Helicopter</strong></span>.<br />
+3.3. Если параметр равен &#171;<em><strong>plane</strong></em>&#171;, то считать второй параметр типа <span class="text-corporate">int</span>(<em>количество пассажиров</em>), статическому объекту <mark class="green">Flyable</mark> <strong>result</strong> присвоить объект класса <span class="text-corporate"><strong>Plane</strong></span>.<br />
+4. В статическом блоке инициализировать <mark class="green">Flyable</mark> <strong>result</strong> вызвав метод <mark>reset</mark>.<br />
+5. Закрыть поток ввода методом <mark>close()</mark>.</p>
+
+</div>

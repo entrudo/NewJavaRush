@@ -1,0 +1,12 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1504">
+<h3>ООП - книги</h3>
+<p>1. Создайте <span class="text-corporate"><strong>public static</strong></span> класс <span class="text-corporate"><strong>MarkTwainBook</strong></span>, который наследуется от <span class="text-corporate"><strong>Book</strong></span>. Имя автора <strong>[Mark Twain]</strong>.<br />
+Параметр конструктора &#8212; название книги.<br />
+2. В классе <strong><span class="text-corporate">MarkTwainBook</span></strong> реализуйте все абстрактные методы.<br />
+3. Для метода <mark>getBook</mark> измените тип возвращаемого значения на более подходящий.<br />
+4. Создайте по аналогии <strong><span class="text-corporate">AgathaChristieBook</span></strong>. Имя автора <strong>[Agatha Christie]</strong>.<br />
+5. В классе <span class="text-corporate"><strong>Book</strong></span> реализуйте тело метода <mark>getOutputByBookType</mark> так, чтобы он возвращал:<br />
+5.1. <mark>agathaChristieOutput</mark> для книг <strong>Агаты</strong> <strong>Кристи</strong>;<br />
+5.2. <mark>markTwainOutput</mark> для книг <strong>Марка</strong> <strong>Твена</strong>.</p>
+
+</div>

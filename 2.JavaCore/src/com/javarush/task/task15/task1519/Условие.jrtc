@@ -1,0 +1,10 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1519">
+<h3>Разные методы для разных типов</h3>
+<p>1. Считать с консоли данные, пока не введено слово &#171;<em><strong>exit</strong></em>&#171;.<br />
+2. Для каждого значения, кроме &#171;<em><strong>exit</strong></em>&#171;, вызвать метод <mark>print</mark>. Если значение:<br />
+2.1. содержит точку &#8216;<em><strong>.</strong></em>&#8216;, то вызвать метод <mark>print</mark> для <span class="text-corporate">Double</span>;<br />
+2.2. больше нуля, но меньше <span class="text-user"><strong>128</strong></span>, то вызвать метод <mark>print</mark> для <span class="text-corporate">short</span>;<br />
+2.3. больше либо равно <span class="text-user"><strong>128</strong></span>, то вызвать метод <mark>print</mark> для <span class="text-corporate">Integer</span>;<br />
+2.4. иначе, вызвать метод <mark>print</mark> для <span class="text-corporate">String</span>.</p>
+
+</div>

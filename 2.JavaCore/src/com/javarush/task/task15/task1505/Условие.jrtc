@@ -1,0 +1,7 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1505">
+<h3>ООП - исправь ошибки в наследовании</h3>
+<p>Исправь метод <mark>containsBones</mark> и всю связанную с ним логику так, чтобы:<br />
+1. Поведение программы осталось прежним.<br />
+2. Метод <mark>containsBones</mark> должен возвращать тип <span class="text-corporate">Object</span> и значение &#171;<em><strong>Yes</strong></em>&#187; вместо true, &#171;<em><strong>No</strong></em>&#187; вместо <span class="text-neon"><strong>false</strong></span></p>
+
+</div>

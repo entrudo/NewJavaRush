@@ -1,0 +1,17 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1524">
+<h3>Порядок загрузки переменных</h3>
+<p>Разберись, что и в какой последовательности инициализируется. Поставь брейкпойнты и используй дебаггер.</p>
+<p><strong>Исправить порядок инициализации данных так, чтобы результат был следующим:</strong><br />
+<code>static void init()<br />
+Static block<br />
+public static void main<br />
+non-static block<br />
+static void printAllFields<br />
+0<br />
+null<br />
+Solution constructor<br />
+static void printAllFields<br />
+6<br />
+First name</code></p>
+
+</div>

@@ -1,0 +1,14 @@
+<div class="wdghtml" taskKey="com.javarush.task.task10.task1020">
+<h3>Задача по алгоритмам</h3>
+<p>Задача: ввести с клавиатуры <span class="text-user"><strong>30</strong></span> чисел. Вывести <strong>10-е</strong> и <strong>11-е</strong> <strong>минимальные числа</strong>.<br />
+Пояснение:<br />
+<strong>Самое минимальное число</strong> – <strong>1-е минимальное</strong>.<br />
+<strong>Следующее минимальное после него</strong> – <strong>2-е минимальное</strong></p>
+<p><strong>Пример:</strong><br />
+<code>1 6 5 7 1 15 63 88<br />
+Первое минимальное – 1<br />
+Второе минимальное – 1<br />
+Третье минимальное – 5<br />
+Четвертое минимальное – 6</code></p>
+
+</div>

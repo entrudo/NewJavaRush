@@ -1,0 +1,7 @@
+<div class="wdghtml" taskKey="com.javarush.task.task06.task0617">
+<h3>Блокнот для новых идей</h3>
+<p>1. В классе <span class="text-corporate"><strong>Solution</strong></span> создать <span class="text-corporate"><strong>public</strong></span> статический класс <span class="text-corporate"><strong>Idea</strong></span><br />
+2. В классе <span class="text-corporate"><strong>Idea</strong></span> создать метод <mark>public String getDescription()</mark>, который будет возвращать любой непустой текст<br />
+3. В классе Solution создай статический метод <mark>public void printIdea(Idea <strong>idea</strong>)</mark>, который будет выводить на экран описание идеи &#8212; это то, что возвращает метод <mark>getDescription</mark></p>
+
+</div>

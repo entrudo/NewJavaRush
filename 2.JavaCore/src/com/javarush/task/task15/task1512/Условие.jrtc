@@ -1,0 +1,8 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1512">
+<h3>Максимально простой код 2</h3>
+<p>Посмотри, что, связанное с конструкторами, может быть добавлено при компиляции, но в этой программе уже присутствует.<br />
+Упрости код &#8212; удали все конструкторы и вызовы конструкторов супер-классов, которые создаются и добавляются автоматически.</p>
+<p><strong>PS:</strong> <em>Взаимосвязь между объектами классов</em> <strong><span class="text-corporate">NakedCat</span></strong> <em>и</em> <span class="text-corporate"><strong>NormalCat</strong></span>, <span class="text-corporate"><strong>SiamCat</strong></span> &#8212; <em>Is-a (наследование): http://en.wikipedia.org/wiki/Is-a</em><br />
+<em> http://cs7002.vk.me/c7007/v7007577/1411a/_dAiEola310.jpg</em></p>
+
+</div>

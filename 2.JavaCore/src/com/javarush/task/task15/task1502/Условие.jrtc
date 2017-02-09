@@ -1,0 +1,11 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1502">
+<h3>ООП - Наследование животных</h3>
+<p>1. Создать <span class="text-corporate"><strong>public static</strong></span> класс <span class="text-corporate"><strong>Goose</strong></span>(<strong>Гусь</strong>).<br />
+2. Создать <span class="text-corporate"><strong>public static</strong></span> класс <span class="text-corporate"><strong>Dragon</strong></span>(<strong>Дракон</strong>).<br />
+3. Унаследовать класс <span class="text-corporate"><strong>Goose</strong></span> от <span class="text-corporate"><strong>BigAnimal</strong></span> или <span class="text-corporate"><strong>SmallAnimal</strong></span>, подумать, какой логически больше подходит.<br />
+4. Унаследовать класс <span class="text-corporate"><strong>Dragon</strong></span> от <span class="text-corporate"><strong>BigAnimal</strong></span> или <span class="text-corporate"><strong>SmallAnimal</strong></span>, подумать, какой логически больше подходит.<br />
+5. В классах <span class="text-corporate"><strong>Goose</strong></span> и <span class="text-corporate"><strong>Dragon</strong></span> переопределить метод <mark>String getSize()</mark>, расширить видимость до максимальной.<br />
+6. В классе <span class="text-corporate"><strong>Goose</strong></span> метод <mark>getSize</mark> должен возвращать строку &#171;<em><strong>Гусь маленький,</strong> </em>&#187; + <strong>[getSize родительского класса]</strong>.<br />
+7. В классе <span class="text-corporate"><strong>Dragon</strong></span> метод <mark>getSize</mark> должен возвращать строку &#171;<em><strong>Дракон большой,</strong> </em>&#187; + <strong>[getSize родительского класса]</strong>.</p>
+
+</div>

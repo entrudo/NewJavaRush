@@ -1,0 +1,8 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1513">
+<h3>Максимально простой код 3</h3>
+<p><strong> Упрости код:</strong><br />
+&#8212; убери всё то, что будет <strong>генерироваться</strong> <strong>автоматически</strong> при компиляции<br />
+&#8212; убери все <strong>наследования классов</strong>, которые и так будут <strong>добавлены</strong> <strong>автоматически</strong> при компиляции<br />
+&#8212; убери все <strong>конструкторы</strong>, которые <strong>создаются</strong> и <strong>добавляются</strong> <strong>автоматически</strong>.</p>
+
+</div>

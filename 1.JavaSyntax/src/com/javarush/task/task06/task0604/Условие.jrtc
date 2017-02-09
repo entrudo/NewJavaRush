@@ -1,0 +1,5 @@
+<div class="wdghtml" taskKey="com.javarush.task.task06.task0604">
+<h3>Ставим котов на счётчик</h3>
+<p>В конструкторе класса <span class="text-corporate"><strong>Cat [public Cat()]</strong></span> увеличивать счётчик котов (<em>статическую переменную этого же класса</em> <span class="text-corporate"><strong>catCount</strong></span>) на <span class="text-user"><strong>1</strong></span>. В методе <mark>finalize</mark> уменьшать на<span class="text-user"><strong> 1</strong></span>.</p>
+
+</div>

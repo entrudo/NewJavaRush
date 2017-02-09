@@ -1,0 +1,10 @@
+<div class="wdghtml" taskKey="com.javarush.task.task06.task0610">
+<h3>Класс ConsoleReader</h3>
+<p>Сделать класс <span class="text-corporate"><strong>ConsoleReader</strong></span>, у которого будут <span class="text-user"><strong>4</strong></span> статических метода:<br />
+<mark>String readString()</mark> – читает с клавиатуры строку<br />
+<mark>int readInt()</mark> – читает с клавиатуры число<br />
+<mark>double readDouble()</mark> – читает с клавиатуры дробное число<br />
+<mark>boolean readBoolean()</mark> – читает с клавиатуры строку &#171;<span class="text-neon"><strong>true</strong></span>&#187; или &#171;<span class="text-neon"><strong>false</strong></span>&#187; и возвращает соответствующую логическую переменную true или false</p>
+<p><strong>Внимание:</strong> создавайте переменную для чтения данных с консоли (<mark class="user">BufferedReader</mark> или <mark class="user">Scanner</mark>) внутри каждого метода.</p>
+
+</div>

@@ -1,0 +1,5 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1510">
+<h3>Все лишнее - прочь!</h3>
+<p>Убрать в методе <mark>main</mark> лишние строки, для которых метод <mark>add</mark> не реализован.</p>
+
+</div>

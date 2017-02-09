@@ -1,0 +1,6 @@
+<div class="wdghtml" taskKey="com.javarush.task.task06.task0609">
+<h3>Расстояние между двумя точками</h3>
+<p>Реализовать статический метод <mark>double getDistance(<strong>x1, y1, x2, y2</strong>)</mark>. Он должен вычислять расстояние между точками.<br />
+Используй метод <mark>double Math.sqrt(double <strong>a</strong>)</mark>, который вычисляет квадратный корень переданного параметра.</p>
+
+</div>

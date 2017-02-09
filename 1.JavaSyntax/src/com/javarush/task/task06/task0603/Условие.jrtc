@@ -1,0 +1,6 @@
+<div class="wdghtml" taskKey="com.javarush.task.task06.task0603">
+<h3>По 50 000 объектов Cat и Dog</h3>
+<p>Создать в цикле по <strong><span class="text-user">50 000</span></strong> объектов <span class="text-corporate"><strong>Cat</strong></span> и <span class="text-corporate"><strong>Dog</strong></span>.<br />
+(<em>Java-машина должна начать уничтожать неиспользуемые, и метод finalize хоть раз да вызовется</em>).</p>
+
+</div>

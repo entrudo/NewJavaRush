@@ -1,0 +1,23 @@
+<div class="wdghtml" taskKey="com.javarush.task.task10.task1019">
+<h3>Функциональности маловато!</h3>
+<p>Задача: Программа вводит с клавиатуры пару (<em><strong>число и строку</strong></em>) и выводит их на экран.<br />
+Новая задача: Программа вводит с клавиатуры пары (<em><strong>число и строку</strong></em>), сохраняет их в <mark class="green">HashMap</mark>.<br />
+<strong>Пустая строка</strong> – <strong>конец</strong> <strong>ввода</strong> данных.<br />
+Числа могу повторяться.<br />
+Строки всегда уникальны.<br />
+<strong>Введенные данные не должны потеряться!</strong><br />
+Затем программа выводит содержание <mark class="green">HashMap</mark> на экран.<br />
+Каждую пару с новой строки.</p>
+<p><strong>Пример ввода:</strong><br />
+<code>1<br />
+Мама<br />
+2<br />
+Рама<br />
+1<br />
+Мыла</code></p>
+<p><strong>Пример вывода:</strong><br />
+<code>1 Мыла<br />
+2 Рама<br />
+1 Мама</code></p>
+
+</div>

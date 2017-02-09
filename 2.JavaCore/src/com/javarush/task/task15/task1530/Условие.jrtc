@@ -1,0 +1,19 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1530">
+<h3>Template pattern</h3>
+<p>1. В отдельном файле создать класс <span class="text-corporate"><strong>DrinkMaker</strong></span> с тремя абстрактными методами:<br />
+&#8212; <mark>void getRightCup()</mark> &#8212; выбрать подходящую чашку<br />
+&#8212; <mark>void putIngredient()</mark> &#8212; положить ингредиенты<br />
+&#8212; <mark>void pour()</mark> &#8212; залить жидкостью<br />
+2. В классе DrinkMaker создать и реализовать метод <mark>void makeDrink()</mark>, который готовит напиток в такой последовательности: выбирает чашку, кладет ингредиенты, заливает жидкостью.<br />
+3. В отдельных файлах создать классы <span class="text-corporate"><strong>LatteMaker</strong></span> и <span class="text-corporate"><strong>TeaMaker</strong></span>, которые наследуются от <strong><span class="text-corporate">DrinkMaker</span></strong>.<br />
+4. Распредели следующие фразы между всеми методами в классах <span class="text-corporate"><strong>LatteMaker</strong></span> и <span class="text-corporate"><strong>TeaMaker</strong></span>, различные фразы для различных методов.<br />
+5. Каждый метод должен выводить в консоль свою фразу не пересекаясь с другими методами.</p>
+<p>6. Фразы:<br />
+&#171;<em><strong>Заливаем кипятком</strong></em>&#187;<br />
+&#171;<em><strong>Берем чашку для латте</strong></em>&#187;<br />
+&#171;<em><strong>Насыпаем чай</strong></em>&#187;<br />
+&#171;<em><strong>Берем чашку для чая</strong></em>&#187;<br />
+&#171;<em><strong>Заливаем молоком с пенкой</strong></em>&#187;<br />
+&#171;<em><strong>Делаем кофе</strong></em>&#171;</p>
+
+</div>

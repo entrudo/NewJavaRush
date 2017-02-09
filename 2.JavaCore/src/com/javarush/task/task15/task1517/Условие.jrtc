@@ -1,0 +1,15 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1517">
+<h3>Статики и исключения</h3>
+<p>В статическом блоке выбросьте <span class="text-corporate"><strong>Exception</strong></span><br />
+В результате класс не загрузится, и вы увидите сообщение об ошибке вместо значения переменной <mark class="user">B</mark></p>
+<p><code>Exception in thread "main" java.lang.ExceptionInInitializerError<br />
+at java.lang.Class.forName0(Native Method)<br />
+at java.lang.Class.forName(Class.java:186)<br />
+at com.intellij.rt.execution.application.AppMain.main(AppMain.java:113)<br />
+Caused by: java.lang.RuntimeException:<br />
+at com.javarush.test.level15.lesson09.task04.Solution.clinit(Solution.java:22)</code></p>
+<p><strong>Hint:</strong> Нужно погуглить причину, если получилось следующее:<br />
+<code>java: initializer must be able to complete normally<br />
+java: unreachable statement</code></p>
+
+</div>

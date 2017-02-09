@@ -1,0 +1,7 @@
+<div class="wdghtml" taskKey="com.javarush.task.task06.task0614">
+<h3>Статические коты</h3>
+<p>1. В классе <strong><span class="text-corporate">Cat</span></strong> добавь <strong><span class="text-corporate">public</span></strong> статическую переменную <mark class="user">cats</mark> (<span class="text-red">ArrayList&lt;Cat&gt;</span>).<br />
+2. Пусть при каждом создании кота (<em>нового объекта</em> <mark class="green">Cat</mark>) в переменную <mark class="user">cats</mark> добавляется этот новый кот. Создать <strong><span class="text-user">10</span></strong> объектов <mark class="green">Cat</mark>.<br />
+3. Метод <mark>printCats</mark> должен выводить всех котов на экран. Нужно использовать переменную <mark class="user">cats</mark>.</p>
+
+</div>

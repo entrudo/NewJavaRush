@@ -1,0 +1,5 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1528">
+<h3>ООП - наследование</h3>
+<p>Исправь класс <span class="text-corporate"><strong>Hrivna</strong></span> так, чтоб избежать возникновения ошибки <span class="text-red"><strong>StackOverflowError</strong></span>.</p>
+
+</div>

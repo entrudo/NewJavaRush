@@ -1,0 +1,10 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1531">
+<h3>Факториал</h3>
+<p>Написать метод, который вычисляет факториал &#8212; произведение всех чисел от <span class="text-user"><strong>1</strong></span> до введенного числа включая его.</p>
+<p><strong>Пример:</strong> <span class="text-neon">4! = factorial(4) = 1*2*3*4 = 24</span></p>
+<p>1. Ввести с консоли число меньше либо равно <span class="text-user"><strong>150</strong></span>.<br />
+2. Реализовать функцию <mark>factorial</mark>.<br />
+3. Если введенное число меньше <span class="text-user"><strong>0</strong></span>, то вывести <span class="text-user"><strong>0</strong></span>.<br />
+<em><strong>0! = 1</strong></em></p>
+
+</div>

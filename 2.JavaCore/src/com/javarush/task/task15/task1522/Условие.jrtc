@@ -1,0 +1,11 @@
+<div class="wdghtml" taskKey="com.javarush.task.task15.task1522">
+<h3>Закрепляем Singleton pattern</h3>
+<p>1. Найти пример реализации паттерна <strong><span class="text-red">Singleton</span></strong> с ленивой реализацией(<strong>lazy initialization</strong>). Используй свой любимый поисковик(<strong>например <em>google</em></strong>).<br />
+2. По образу и подобию в отдельных файлах создай три класса синглтона <strong>Sun</strong>, <strong>Moon</strong>, <strong>Earth</strong>.<br />
+3. Реализуй интерфейс <mark class="red">Planet</mark> в классах <span class="text-corporate"><strong>Sun</strong></span>, <span class="text-corporate"><strong>Moon</strong></span>, <span class="text-corporate"><strong>Earth</strong></span>.<br />
+4. В статическом блоке класса <span class="text-corporate"><strong>Solution</strong></span> вызови метод <mark>readKeyFromConsoleAndInitPlanet</mark>.<br />
+5. Реализуй функционал метода <mark>readKeyFromConsoleAndInitPlanet</mark>:<br />
+5.1. С консоли считай один параметр типа <span class="text-corporate">String</span>.<br />
+5.2. Если параметр равен одной из констант интерфейса <mark class="red">Planet</mark>, создай соответствующий объект и присвой его <mark class="green">Planet</mark> <strong><span class="text-corporate">thePlanet</span></strong>, иначе обнулить <mark class="green">Planet</mark> <span class="text-corporate"><strong>thePlanet</strong></span>.</p>
+
+</div>

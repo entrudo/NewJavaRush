@@ -1,0 +1,17 @@
+<div class="wdghtml" taskKey="com.javarush.task.task06.task0622">
+<h3>Числа по возрастанию</h3>
+<p>Задача: Написать программу, которая вводит с клавиатуры <span class="text-user"><strong>5</strong> </span>чисел и выводит их в возрастающем порядке.</p>
+<p><strong>Пример ввода:</strong><br />
+<code>3<br />
+2<br />
+15<br />
+6<br />
+17</code></p>
+<p><strong>Пример вывода:</strong><br />
+<code>2<br />
+3<br />
+6<br />
+15<br />
+17</code></p>
+
+</div>
