@@ -9,16 +9,16 @@ import java.util.ArrayList;
 */
 
 public class Solution {
-    public static void main(String[] args) throws Exception {
-        // Считать строки с консоли и объявить ArrayList list тут
-
-        ArrayList<String> result = doubleValues(list);
-
-        // Вывести на экран result
-    }
-
-    public static ArrayList<String> doubleValues(ArrayList<String> list) {
-        //напишите тут ваш код
-        return null;
-    }
+//    public static void main(String[] args) throws Exception {
+//        // Считать строки с консоли и объявить ArrayList list тут
+//
+//        ArrayList<String> result = doubleValues(list);
+//
+//        // Вывести на экран result
+//    }
+//
+//    public static ArrayList<String> doubleValues(ArrayList<String> list) {
+//        //напишите тут ваш код
+//        return null;
+//    }
 }

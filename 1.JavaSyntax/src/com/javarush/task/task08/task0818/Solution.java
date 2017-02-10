@@ -8,15 +8,15 @@ import java.util.Map;
 */
 
 public class Solution {
-    public static HashMap<String, Integer> createMap() {
-        //напишите тут ваш код
-    }
-
-    public static void removeItemFromMap(HashMap<String, Integer> map) {
-        //напишите тут ваш код
-    }
-
-    public static void main(String[] args) {
-
-    }
+//    public static HashMap<String, Integer> createMap() {
+//        //напишите тут ваш код
+//    }
+//
+//    public static void removeItemFromMap(HashMap<String, Integer> map) {
+//        //напишите тут ваш код
+//    }
+//
+//    public static void main(String[] args) {
+//
+//    }
 }

@@ -7,12 +7,12 @@ import java.util.HashSet;
 */
 
 public class Solution {
-    public static HashSet<String> createSet() {
-        //напишите тут ваш код
-
-    }
-
-    public static void main(String[] args) {
-
-    }
+//    public static HashSet<String> createSet() {
+//        //напишите тут ваш код
+//
+//    }
+//
+//    public static void main(String[] args) {
+//
+//    }
 }

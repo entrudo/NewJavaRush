@@ -8,17 +8,17 @@ import java.util.Set;
 */
 
 public class Solution {
-    public static HashSet<Integer> createSet() {
-        //напишите тут ваш код
-
-    }
-
-    public static HashSet<Integer> removeAllNumbersMoreThan10(HashSet<Integer> set) {
-        //напишите тут ваш код
-
-    }
-
-    public static void main(String[] args) {
-
-    }
+//    public static HashSet<Integer> createSet() {
+//        //напишите тут ваш код
+//
+//    }
+//
+//    public static HashSet<Integer> removeAllNumbersMoreThan10(HashSet<Integer> set) {
+//        //напишите тут ваш код
+//
+//    }
+//
+//    public static void main(String[] args) {
+//
+//    }
 }

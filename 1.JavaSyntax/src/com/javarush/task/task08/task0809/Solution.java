@@ -10,23 +10,23 @@ import java.util.List;
 */
 
 public class Solution {
-    public static void main(String[] args) {
-        System.out.println(getTimeMsOfInsert(new ArrayList()));
-        System.out.println(getTimeMsOfInsert(new LinkedList()));
-    }
-
-    public static long getTimeMsOfInsert(List list) {
-        //напишите тут ваш код
-
-        insert10000(list);
-
-        //напишите тут ваш код
-
-    }
-
-    public static void insert10000(List list) {
-        for (int i = 0; i < 10000; i++) {
-            list.add(0, new Object());
-        }
-    }
+//    public static void main(String[] args) {
+//        System.out.println(getTimeMsOfInsert(new ArrayList()));
+//        System.out.println(getTimeMsOfInsert(new LinkedList()));
+//    }
+//
+//    public static long getTimeMsOfInsert(List list) {
+//        //напишите тут ваш код
+//
+//        insert10000(list);
+//
+//        //напишите тут ваш код
+//
+//    }
+//
+//    public static void insert10000(List list) {
+//        for (int i = 0; i < 10000; i++) {
+//            list.add(0, new Object());
+//        }
+//    }
 }

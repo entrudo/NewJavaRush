@@ -11,5 +11,6 @@ public class Solution {
 
     public static long getVolume(int a, int b, int c) {
         //напишите тут ваш код
+        return (long) (a * b * c) * 1000;
     }
 }

@@ -9,15 +9,15 @@ import java.io.InputStreamReader;
 */
 
 public class Solution {
-    public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
-        int maximum;
-        int minimum;
-
-        //напишите тут ваш код
-
-        System.out.println(maximum);
-        System.out.println(minimum);
-    }
+//    public static void main(String[] args) throws IOException {
+//        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//
+//        int maximum;
+//        int minimum;
+//
+//        //напишите тут ваш код
+//
+//        System.out.println(maximum);
+//        System.out.println(minimum);
+//    }
 }

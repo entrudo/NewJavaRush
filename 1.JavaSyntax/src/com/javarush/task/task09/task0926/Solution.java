@@ -7,20 +7,20 @@ import java.util.ArrayList;
 */
 
 public class Solution {
-    public static void main(String[] args) {
-        ArrayList<int[]> list = createList();
-        printList(list);
-    }
-
-    public static ArrayList<int[]> createList() {
-        //напишите тут ваш код
-    }
-
-    public static void printList(ArrayList<int[]> list) {
-        for (int[] array : list) {
-            for (int x : array) {
-                System.out.println(x);
-            }
-        }
-    }
+//    public static void main(String[] args) {
+//        ArrayList<int[]> list = createList();
+//        printList(list);
+//    }
+//
+//    public static ArrayList<int[]> createList() {
+//        //напишите тут ваш код
+//    }
+//
+//    public static void printList(ArrayList<int[]> list) {
+//        for (int[] array : list) {
+//            for (int x : array) {
+//                System.out.println(x);
+//            }
+//        }
+//    }
 }

@@ -11,5 +11,8 @@ public class Solution {
 
     public static double getWeight(int weightEarth) {
         //напишите тут ваш код
+        double result = weightEarth * 0.17;
+
+        return result;
     }
 }

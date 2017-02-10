@@ -11,5 +11,6 @@ public class Solution {
         System.out.println("Что ищет он в стране далекой?");
 
         //напишите тут ваш код
+        System.out.println("Что кинул он в краю родном?...");
     }
 }

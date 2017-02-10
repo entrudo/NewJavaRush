@@ -8,27 +8,27 @@ import java.io.InputStreamReader;
 */
 
 public class ConsoleReader {
-    public static String readString() throws Exception {
-        //напишите тут ваш код
-
-    }
-
-    public static int readInt() throws Exception {
-        //напишите тут ваш код
-
-    }
-
-    public static double readDouble() throws Exception {
-        //напишите тут ваш код
-
-    }
-
-    public static boolean readBoolean() throws Exception {
-        //напишите тут ваш код
-
-    }
-
-    public static void main(String[] args) {
-
-    }
+//    public static String readString() throws Exception {
+//        //напишите тут ваш код
+//
+//    }
+//
+//    public static int readInt() throws Exception {
+//        //напишите тут ваш код
+//
+//    }
+//
+//    public static double readDouble() throws Exception {
+//        //напишите тут ваш код
+//
+//    }
+//
+//    public static boolean readBoolean() throws Exception {
+//        //напишите тут ваш код
+//
+//    }
+//
+//    public static void main(String[] args) {
+//
+//    }
 }
