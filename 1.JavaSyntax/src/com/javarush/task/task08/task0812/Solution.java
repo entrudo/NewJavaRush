@@ -11,20 +11,21 @@ public class Solution {
         //напишите тут ваш код
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         ArrayList<Integer> list = new ArrayList<>();
-        int count = 0;
-        int maxCount = 0;
+        int count = 1;
+        int maxCount = 1;
 
         for (int i = 0; i < 10; i++) {
-            String temp = reader.readLine();
-            list.add(Integer.parseInt(temp));
+            list.add(Integer.parseInt(reader.readLine()));
         }
 
         for (int i = 0; i < list.size() - 1; i++) {
             if (list.get(i) == list.get(i + 1)) {
                 count++;
-            } else if (count > maxCount) {
-                maxCount = count + 1;
-                count = 0;
+                if (count >= maxCount) {
+                    maxCount = count;
+                }
+            } else {
+                count = 1;
             }
         }
 
