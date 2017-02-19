@@ -11,6 +11,42 @@ import java.io.IOException;
 public class Solution {
     public static void main(String[] args) throws IOException {
         //напиште тут ваш код
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        while (true) {
+            String temp = reader.readLine();
+            if (temp.equals("exit")){
+                return;
+            }
+    
+            if (temp.contains(".")) {
+                boolean toString = false;
+                Double toDuble = 0.0;
+                try {
+                    toDuble = Double.parseDouble(temp);
+                }catch (NumberFormatException e) {
+                    toString = true;
+                }
+                if (toString) {
+                    print(temp);
+                    continue;
+                }
+                print(toDuble);
+                continue;
+            }
+            
+            try {
+                int number = Integer.parseInt(temp);
+                if (number <= 0 || number >= 128) {
+                    print((Integer) number);
+                } else if (number < 128 && number > 0) {
+                    print((short) number);
+                }
+                continue;
+            }catch (NumberFormatException e) {
+                
+            }
+            print(temp);
+        }
     }
 
     public static void print(Double value) {
