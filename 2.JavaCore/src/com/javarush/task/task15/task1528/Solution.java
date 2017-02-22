@@ -24,5 +24,9 @@ public class Solution {
         public Hrivna getMoney() {
             return this;
         }
+
+        public Object getAmount(){
+            return amount;
+        }
     }
 }
