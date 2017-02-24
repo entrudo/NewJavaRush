@@ -39,6 +39,9 @@ public class Solution {
 
         public void printCountdown() throws InterruptedException {
             //add your code here - добавь код тут
+            Thread.sleep(500);
+            System.out.println(list.get(countFrom - 1));
+            countFrom--;
         }
     }
 }

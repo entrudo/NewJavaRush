@@ -5,7 +5,9 @@ package com.javarush.task.task16.task1619;
 */
 
 public class Solution {
+    public static boolean cancel = false;
     public static void main(String[] args) throws InterruptedException {
+
         Thread t = new Thread(new TestThread());
         t.start();
         Thread.sleep(3000);
@@ -13,12 +15,12 @@ public class Solution {
     }
 
     public static void ourInterruptMethod() {
-
+        cancel = true;
     }
 
     public static class TestThread implements Runnable {
         public void run() {
-            while (true) {
+            while (!cancel) {
                 try {
                     System.out.println("he-he");
                     Thread.sleep(500);

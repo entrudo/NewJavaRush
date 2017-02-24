@@ -11,7 +11,11 @@ public class Solution {
     }
 
     private static void investigateWorld() {
-
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public static class Cat extends Thread {
@@ -37,6 +41,8 @@ public class Solution {
         private void initAllKitten() throws InterruptedException {
             kitten1.start();
             kitten2.start();
+            kitten1.join();
+            kitten2.join();
         }
     }
 

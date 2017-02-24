@@ -12,6 +12,22 @@ public class Solution {
         System.out.println(new GenerateThread());
     }
 
-    public static class GenerateThread {
+    public static class GenerateThread extends Thread {
+
+        @Override
+        public String toString() {
+            return this.getName() + " created";
+        }
+
+        public GenerateThread() {
+            super(Integer.toString(++countCreatedThreads));
+            this.start();
+        }
+
+        public void run() {
+            if (countCreatedThreads < count){
+                System.out.println(new GenerateThread().toString());
+            }
+        }
     }
 }

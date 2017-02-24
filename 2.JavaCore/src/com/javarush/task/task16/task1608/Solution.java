@@ -16,6 +16,7 @@ public class Solution {
         while (ivanov.getCountSpeeches() + petrov.getCountSpeeches() + sidorov.getCountSpeeches() < totalCountSpeeches) {
         }
 
+        ivanov.join();
         System.out.println(ivanov);
         System.out.println(petrov);
         System.out.println(sidorov);

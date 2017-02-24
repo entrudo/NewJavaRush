@@ -1,14 +1,15 @@
 package com.javarush.task.task15.task1522;
 
 public class Earth implements Planet {
+    private static Earth instance = null;
+
     private Earth() {
     }
 
-    private static class SingeltonHolder {
-        private static final Earth earth = new Earth();
-    }
-
-    public static Earth getInstance() {
-        return SingeltonHolder.earth;
+    public static synchronized Earth getInstance() {
+        if (instance == null) {
+            return instance = new Earth();
+        }
+        return instance;
     }
 }
