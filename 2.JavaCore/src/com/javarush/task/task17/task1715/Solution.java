@@ -8,44 +8,60 @@ import java.util.List;
 */
 
 public class Solution {
-//    public static DrugsController drugsController = new DrugsController();
-//    public static boolean isStopped = false;
-//
-//    public static void main(String[] args) throws InterruptedException {
-//        Thread apteka = new Thread(new Apteka());
-//        Thread man = new Thread(new Person(), "Мужчина");
-//        Thread woman = new Thread(new Person(), "Женщина");
-//
-//        apteka.start();
-//        man.start();
-//        woman.start();
-//
-//        Thread.sleep(1000);
-//        isStopped = true;
-//    }
-//
-//    public static class Apteka {
-//
-//    }
-//
-//    public static class Person {
-//
-//    }
-//
-//    public static int getRandomCount() {
-//        return (int) (Math.random() * 3) + 1;
-//    }
-//
-//    public static Drug getRandomDrug() {
-//        int index = (int) ((Math.random() * 1000) % (drugsController.allDrugs.size()));
-//        List<Drug> drugs = new ArrayList<>(drugsController.allDrugs.keySet());
-//        return drugs.get(index);
-//    }
-//
-//    private static void waitAMoment() {
-//        try {
-//            Thread.sleep(100);
-//        } catch (InterruptedException e) {
-//        }
-//    }
+    public static DrugsController drugsController = new DrugsController();
+    public static boolean isStopped = false;
+
+    public static void main(String[] args) throws InterruptedException {
+        Thread apteka = new Thread(new Apteka());
+        Thread man = new Thread(new Person(), "Мужчина");
+        Thread woman = new Thread(new Person(), "Женщина");
+
+        apteka.start();
+        man.start();
+        woman.start();
+
+        Thread.sleep(1000);
+        isStopped = true;
+    }
+
+    public static class Apteka implements Runnable {
+
+        @Override
+        public void run() {
+            while (!isStopped){
+                drugsController.buy(getRandomDrug(), getRandomCount());
+                for (int j = 0; j < 3; j++) {
+                    waitAMoment();
+                }
+            }
+        }
+    }
+
+    public static class Person implements Runnable {
+
+        @Override
+        public void run() {
+            while (!isStopped){
+                drugsController.sell(getRandomDrug(), getRandomCount());
+                waitAMoment();
+            }
+        }
+    }
+
+    public static synchronized int getRandomCount() {
+        return (int) (Math.random() * 3) + 1;
+    }
+
+    public static synchronized Drug getRandomDrug() {
+        int index = (int) ((Math.random() * 1000) % (drugsController.allDrugs.size()));
+        List<Drug> drugs = new ArrayList<>(drugsController.allDrugs.keySet());
+        return drugs.get(index);
+    }
+
+    private static synchronized void waitAMoment() {
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+        }
+    }
 }
