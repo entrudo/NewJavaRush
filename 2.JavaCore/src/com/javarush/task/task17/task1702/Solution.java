@@ -1,6 +1,7 @@
 package com.javarush.task.task17.task1702;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /* 
@@ -49,6 +50,17 @@ public class Solution {
                     array[j] = k;
                 }
             }
+        }
+    }
+
+    public static class SortThread extends Thread {
+
+        public void run() {
+            sort(testArray);
+        }
+
+        public void start() {
+            this.run();
         }
     }
 }

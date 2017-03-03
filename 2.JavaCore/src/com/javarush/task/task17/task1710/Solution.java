@@ -11,6 +11,7 @@ CRUD
 public class Solution {
     public static List<Person> allPeople = new ArrayList<Person>();
 
+
     static {
         allPeople.add(Person.createMale("Иванов Иван", new Date()));  //сегодня родился    id=0
         allPeople.add(Person.createMale("Петров Петр", new Date()));  //сегодня родился    id=1
@@ -18,5 +19,8 @@ public class Solution {
 
     public static void main(String[] args) {
         //start here - начни тут
+        for (Person person : allPeople) {
+            System.out.println(person);
+        }
     }
 }
