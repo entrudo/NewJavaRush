@@ -9,3 +9,11 @@ AmigoOutputStream
 2.3 Закрыть поток методом close().
 
 
+Требования:
+1.	Метод main изменять нельзя.
+2.	Класс AmigoOutputStream должен наследоваться от класса FileOutputStream.
+3.	Класс AmigoOutputStream должен принимать в конструкторе обьект типа FileOutputStream.
+4.	Все методы write(), flush(), close() в классе AmigoOutputStream должны делегировать свое выполнение объекту FileOutputStream.
+5.	Метод close() должен сначала вызвать метод flush(), затем дописать текст, затем закрыть поток.
+
+
