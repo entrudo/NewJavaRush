@@ -1,5 +1,9 @@
 package com.javarush.task.task19.task1922;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +20,29 @@ public class Solution {
         words.add("В");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader fileReader = new BufferedReader(new FileReader(reader.readLine()));
+        reader.close();
+
+        while (fileReader.ready()) {
+            String line = fileReader.readLine();
+            String[] array = line.split(" ");
+            int count = 0;
+            for (String word : words) {
+                for (String ar : array) {
+                    if (word.equals(ar)){
+                        count++;
+                    }
+                }
+            }
+            if (count == 2) {
+                System.out.println(line);
+            }
+        }
+
+        fileReader.close();
 
     }
 }
