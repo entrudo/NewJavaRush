@@ -4,10 +4,36 @@ package com.javarush.task.task19.task1913;
 Выводим только цифры
 */
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 public class Solution {
     public static TestString testString = new TestString();
 
     public static void main(String[] args) {
+        PrintStream consoleOutput = System.out;
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream stream = new PrintStream(outputStream);
+        System.setOut(stream);
+
+        testString.printSomething();
+
+        char[] result = outputStream.toString().toCharArray();
+        StringBuilder builder = new StringBuilder();
+
+        for (char c : result) {
+            String symbol = Character.toString(c);
+            try {
+
+                builder.append(Integer.parseInt(symbol));
+            } catch (Exception e){
+            }
+        }
+
+        System.setOut(consoleOutput);
+
+        System.out.println(builder.toString());
     }
 
     public static class TestString {
