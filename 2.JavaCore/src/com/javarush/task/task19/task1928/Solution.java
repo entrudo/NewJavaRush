@@ -15,8 +15,8 @@ public class Solution {
 
     public static void main(String... args) throws IOException {
         try (
-                FileOutputStream outputStream = new FileOutputStream(args[0]);
-                InputStream is = Solution.class.getClassLoader().getResourceAsStream(args[1]);
+                FileOutputStream outputStream = new FileOutputStream("c:/file.txt");
+                InputStream is = Solution.class.getClassLoader().getResourceAsStream("/tst/lena.jpg");
         ) {
             ;
             byte[] b = new byte[is.available()];
@@ -42,7 +42,7 @@ public class Solution {
                 }
             }
 
-            if (result instanceof A) {
+            if (result instanceof C) {
                 C p = (C) result;
                 System.out.println(p.getClass().getSimpleName());
             }
