@@ -89,4 +89,5 @@ public class User {
         result = 31 * result + (country != null ? country.hashCode() : 0);
         return result;
     }
+
 }

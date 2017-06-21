@@ -12,8 +12,8 @@ public class Solution {
         try {
 
             File your_file_name = File.createTempFile("your_file_name", null);
-            OutputStream outputStream = new FileOutputStream(your_file_name);
-            InputStream inputStream = new FileInputStream(your_file_name);
+            OutputStream outputStream = new FileOutputStream("File.txt");
+            InputStream inputStream = new FileInputStream("File.txt");
 
             ClassWithStatic classWithStatic = new ClassWithStatic();
             classWithStatic.i = 3;
@@ -28,6 +28,8 @@ public class Solution {
 
             loadedObject.load(inputStream);
             //check here that classWithStatic object equals to loadedObject object - проверьте тут, что classWithStatic и loadedObject равны
+            boolean result = classWithStatic.equals(loadedObject);
+            System.out.println(result);
 
             outputStream.close();
             inputStream.close();
@@ -36,7 +38,7 @@ public class Solution {
             //e.printStackTrace();
             System.out.println("Oops, something wrong with my file");
         } catch (Exception e) {
-            //e.printStackTrace();
+//            e.printStackTrace();
             System.out.println("Oops, something wrong with save/load method");
         }
     }
@@ -48,10 +50,19 @@ public class Solution {
 
         public void save(OutputStream outputStream) throws Exception {
             //implement this method - реализуйте этот метод
+            PrintWriter printWriter = new PrintWriter(outputStream);
+            printWriter.println(i);
+            printWriter.println(j);
+            printWriter.println(staticString);
+            printWriter.flush();
         }
 
         public void load(InputStream inputStream) throws Exception {
             //implement this method - реализуйте этот метод
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                i = Integer.parseInt(reader.readLine());
+                j = Integer.parseInt(reader.readLine());
+                staticString = reader.readLine();
         }
 
         @Override
