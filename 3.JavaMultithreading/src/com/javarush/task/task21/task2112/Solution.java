@@ -5,6 +5,8 @@ public class Solution {
         DBConnectionManager dbConnectionManager = new DBConnectionManager();
         try (FakeConnection fakeConnection = dbConnectionManager.getFakeConnection()) {
             System.out.println("Entering the body of try block.");
+            fakeConnection.usefulOperation();
+            fakeConnection.unsupportedOperation();
         } catch (Exception e) {
         }
     }
