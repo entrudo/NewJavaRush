@@ -11,10 +11,16 @@ public class Solution {
 
     public static Solution[] getTwoSolutions() {
 
-        return null;
+        Solution solution = new Solution();
+        solution.innerClasses[0] = solution.new InnerClass();
+        solution.innerClasses[1] = solution.new InnerClass();
+        Solution solution1 = new Solution();
+        solution1.innerClasses[0] = solution1.new InnerClass();
+        solution1.innerClasses[1] = solution1.new InnerClass();
+        return new Solution[]{solution, solution1};
     }
 
     public static void main(String[] args) {
-
+        System.out.println(getTwoSolutions());
     }
 }
