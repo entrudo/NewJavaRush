@@ -1,5 +1,11 @@
 package com.javarush.task.task24.task2408;
 
+import java.text.DateFormatSymbols;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+
 /*
 В работе вам иногда будет нужно закастить класс к какому-нибудь другому классу, не интерфейсу :)))
 Класс DogPet использует 2 класса - SuperDog и Dog, разберись с getName в классе DogPet
@@ -42,6 +48,25 @@ public class Dog implements Pet {
      * @return экземпляр класса DogPet
      */
     public Sayable toSayable(final int i) {
-       return null;
+        class DogPet extends SuperDog implements Sayable {
+
+            private String getName() {
+                return getSuperQuotes() + name + getSuperQuotes();
+            }
+
+            @Override
+            public String say() {
+
+                if (i <= 0)
+                    return this.getName() + " спит.";
+                else {
+                    StringBuilder stringBuilder = new StringBuilder(getName()+" лает г");
+                    for (int j = 0; j < i; j++)
+                        stringBuilder.append("а");
+                    return stringBuilder.append("в! ").append(formatter.format(new Date())).toString();
+                }
+            }
+        }
+       return new DogPet();
     }
 }

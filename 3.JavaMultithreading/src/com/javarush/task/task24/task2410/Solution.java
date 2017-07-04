@@ -22,7 +22,18 @@ public class Solution {
                 return new LocalIterator();
             }
         }
-        return new LocalIterator();
+//        return new LocalIterator();
+        return new Iterator() {
+            {
+                countItems++;
+                System.out.println(name + " item " + countItems);
+            }
+
+            @Override
+            public Iterator next() {
+                return new LocalIterator();
+            }
+        };
     }
 
     public static void main(String[] args) {

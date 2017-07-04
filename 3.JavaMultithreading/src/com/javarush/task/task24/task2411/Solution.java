@@ -3,7 +3,7 @@ package com.javarush.task.task24.task2411;
 /* 
 Вспомним наследование
 */
-public class Solution {
+public class Solution extends C {
     private class A {
         protected String value = "A";
 
