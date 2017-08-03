@@ -19,6 +19,16 @@ public class Solution extends Thread {
 
     public void interrupt() {
         //implement logic here
+        try {
+        if (socket != null) socket.close();
+        if (in != null) in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            super.interrupt();
+        }
+        super.interrupt();
     }
 
     public void run() {
@@ -31,10 +41,14 @@ public class Solution extends Thread {
                 } else {
                     if (count > 0) {
                         //process buffer here
+                        interrupt();
                     }
                 }
             }
         } catch (IOException ignored) {}
+        finally {
+            interrupt();
+        }
     }
 
     public static void main(String[] args) {

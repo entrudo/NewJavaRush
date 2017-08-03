@@ -20,6 +20,7 @@ public abstract class SocketTask<T> implements CancellableTask<T> {
             public boolean cancel(boolean mayInterruptIfRunning) {
                 //close all resources here by using proper SocketTask method
                 //call super-class method in finally block
+
                 return false;
             }
         };

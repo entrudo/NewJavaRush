@@ -1,9 +1,6 @@
 package com.javarush.task.task25.task2502;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /* 
 Машину на СТО не повезем!
@@ -21,6 +18,14 @@ public class Solution {
 
         public Car() {
             //init wheels here
+            String[] array = loadWheelNamesFromDB();
+            if (array.length != 4 || loadWheelNamesFromDB() == null) {
+                throw new IllegalArgumentException();
+            }
+            wheels = new ArrayList<>();
+            for (String s : array) {
+                wheels.add(Wheel.valueOf(s));
+            }
         }
 
         protected String[] loadWheelNamesFromDB() {
@@ -30,5 +35,6 @@ public class Solution {
     }
 
     public static void main(String[] args) {
+        Car car = new Car();
     }
 }
