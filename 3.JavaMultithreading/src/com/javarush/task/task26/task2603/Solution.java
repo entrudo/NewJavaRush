@@ -1,0 +1,11 @@
+package com.javarush.task.task26.task2603;
+
+/* 
+Убежденному убеждать других не трудно
+*/
+public class Solution {
+
+    public static void main(String[] args) {
+
+    }
+}
