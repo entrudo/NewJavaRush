@@ -24,7 +24,7 @@ public class Solution {
                 break;
             } else {
                 if (!(list.get(i).length() < list.get(i + 1).length())) {
-                    System.out.println(i);
+                    System.out.println(i + 1);
                     break;
                 }
             }
