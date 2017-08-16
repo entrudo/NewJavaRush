@@ -14,7 +14,7 @@ public class Solution extends Thread {
     private static final AtomicInteger aliveThreadIndex = new AtomicInteger();
     private static final Logger log = Logger.getAnonymousLogger();
 
-    private static boolean debugLifecycle = false;
+    private volatile static boolean debugLifecycle = false;
 
     public Solution(Runnable runnable) {
         this(runnable, DEFAULT_JAVARUSH_THREAD_NAME);
