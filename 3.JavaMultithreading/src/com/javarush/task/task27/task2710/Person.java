@@ -9,14 +9,18 @@ public class Person implements Runnable {
 
     @Override
     public void run() {
-        String name = Thread.currentThread().getName();
-        try {
-            Thread.sleep(1000);
-            //сделайте что-то тут - do something here
-            mail.setText("Person [" + name + "] has written an email 'AAA'");
-            //сделайте что-то тут - do something here
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        synchronized (mail) {
+            String name = Thread.currentThread().getName();
+            try {
+                Thread.sleep(1000);
+                //сделайте что-то тут - do something here
+//                mail.wait();
+                mail.setText("Person [" + name + "] has written an email 'AAA'");
+                //сделайте что-то тут - do something here
+                mail.notifyAll();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
