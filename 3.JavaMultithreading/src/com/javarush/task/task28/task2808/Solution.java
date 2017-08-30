@@ -42,6 +42,16 @@ public class Solution {
     }
 
     public static Callable<String> getTask(final int i) {
-        return null;
+        Long result = 0L;
+        for (int j = 0; j <= i; j++) {
+            result += j;
+        }
+        Long finalResult = result;
+        return new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                return Long.toString(finalResult);
+            }
+        };
     }
 }

@@ -30,6 +30,7 @@ public class Solution {
                 @Override
                 public void run() {
                     System.out.println(member + " готовится играть");
+                    phaser.arriveAndAwaitAdvance();
                     if (!isEveryoneReady) {
                         isEveryoneReady = true;
                         System.out.println("Игра началась!");
@@ -37,6 +38,8 @@ public class Solution {
                     character.run();
                 }
             }.start();
+
         }
+        phaser.arriveAndDeregister();
     }
 }

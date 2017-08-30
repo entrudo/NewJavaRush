@@ -20,7 +20,10 @@ public class Solution {
             });
         }
 
-        executor.shutdownNow();
+        List<Runnable> list = executor.shutdownNow();
+        for (Runnable runnable : list) {
+            System.out.println(runnable.toString() + " was not completed");
+        }
     }
 
     private static void doExpensiveOperation(int localId) {

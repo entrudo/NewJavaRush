@@ -10,8 +10,8 @@ public class FactorialCalculator implements Callable {
     }
 
     @Override
-    public Long call() {
-        return 0L;
+    public Long call() throws InterruptedException {
+        return factorial(number);
     }
 
     public long factorial(int number) throws InterruptedException {
