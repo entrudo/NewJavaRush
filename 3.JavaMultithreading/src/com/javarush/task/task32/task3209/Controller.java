@@ -74,6 +74,7 @@ public class Controller {
     }
 
     public void openDocument() {
+
     }
 
     public void saveDocument() {
