@@ -22,15 +22,20 @@ public class Solution {
         for (int i = 1; i <= 10; i++) {
             System.out.printf("Попытка %d - вводи число: ", i);
             tryNumber = scanner.nextInt();
-            if (tryNumber < secret)
-                if (i < 10)
+            if (tryNumber < secret) {
+                if (i < 10) {
                     System.out.println("Загаданное число больше");
-            if (tryNumber > secret)
-                if (i < 10)
+                }
+            }
+            if (tryNumber > secret) {
+                if (i < 10) {
                     System.out.println("Загаданное число меньше");
-            if (tryNumber == secret)
+                }
+            }
+            if (tryNumber == secret) {
                 i = stopGame();
-            flagWin = true;
+                flagWin = true;
+            }
         }
         if (flagWin)
             printCongratulations(tryNumber);

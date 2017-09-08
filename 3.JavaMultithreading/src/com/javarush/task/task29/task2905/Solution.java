@@ -45,7 +45,7 @@ public class Solution {
             @Override
             public void run() {
                 for (int i = 0; i < 100000; i++) {
-                    messageQueue.add(String.valueOf(i--));
+                    messageQueue.add(String.valueOf(i));
                 }
             }
         }.start();
@@ -64,7 +64,7 @@ public class Solution {
                 public void run() {
                     while (true) {
                         try {
-                            messageQueue.drainTo(messageQueue, MAX_BATCH_SIZE);
+                            messageQueue.drainTo(batch, MAX_BATCH_SIZE);
                             persistData(batch);
                             batch.clear();
                             Thread.sleep(1);
