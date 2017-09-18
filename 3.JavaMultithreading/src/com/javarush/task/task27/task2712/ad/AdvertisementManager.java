@@ -1,7 +1,5 @@
 package com.javarush.task.task27.task2712.ad;
 
-import com.javarush.task.task27.task2712.ConsoleHelper;
-
 public class AdvertisementManager {
     private final AdvertisementStorage storage = AdvertisementStorage.getInstance();
     private int timeSeconds;
@@ -10,8 +8,10 @@ public class AdvertisementManager {
         this.timeSeconds = timeSeconds;
     }
 
-    public void processVideos() {
-        ConsoleHelper.writeMessage("calling processVideos method");
+    public void processVideos() throws NoVideoAvailableException {
+        if (storage.list().size() <= 0) {
+            throw new NoVideoAvailableException();
+        }
     }
 
 
