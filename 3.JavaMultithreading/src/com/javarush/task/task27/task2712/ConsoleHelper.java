@@ -9,35 +9,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConsoleHelper {
-    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     public static void writeMessage(String message) {
         System.out.println(message);
     }
 
     public static String readString() throws IOException {
-        return reader.readLine();
+        String s = "null";
+        try {
+            s = br.readLine();
+        } catch (IOException e) {
+            throw e;
+        }
+        return s;
     }
 
     public static List<Dish> getAllDishesForOrder() throws IOException {
-        List<Dish> listOfDishes = new ArrayList<>();
-        ConsoleHelper.writeMessage("Выберите блюда. Для завершения наберите 'exit'.");
-        writeMessage(Dish.allDishesToString());
+        List<Dish> dishes = new ArrayList<>();
+        writeMessage("Please, enter the dish name (" + Dish.allDishesToString() + ") OR type 'exit' to complete the order");
         while (true) {
-            String readString = readString();
-            if (readString.equals("exit")) {
+            String dish = readString().trim();
+            if (dish.equalsIgnoreCase("exit"))
                 break;
-            }
-
-            for (Dish dish : Dish.values()) {
-                if (dish.name().equalsIgnoreCase(readString)) {
-                    listOfDishes.add(dish);
-                } else {
-                    writeMessage("Нет такого блюда");
-                }
+            try {
+                dishes.add(Dish.valueOf(dish));
+            } catch (IllegalArgumentException e) {
+                writeMessage("Sorry, we don't have that dish");
             }
         }
-
-        return listOfDishes;
+        return dishes;
     }
 }

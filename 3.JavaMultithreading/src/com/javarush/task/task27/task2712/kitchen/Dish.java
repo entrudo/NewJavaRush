@@ -1,7 +1,5 @@
 package com.javarush.task.task27.task2712.kitchen;
 
-import java.util.Arrays;
-
 public enum Dish {
     Fish(25),
     Steak(30),
@@ -9,17 +7,22 @@ public enum Dish {
     Juice(5),
     Water(3);
 
+    Dish(int duration) {
+        this.duration = duration;
+    }
+
     private int duration;
 
     public int getDuration() {
         return duration;
     }
 
-    Dish(int duration) {
-        this.duration = duration;
-    }
-
     public static String allDishesToString() {
-        return Arrays.toString(Dish.values());
+        StringBuffer sb = new StringBuffer();
+        for (Dish dish : Dish.values()) {
+            sb.append(dish).append(", ");
+        }
+        sb.deleteCharAt(sb.lastIndexOf(", "));
+        return sb.toString().trim();
     }
 }

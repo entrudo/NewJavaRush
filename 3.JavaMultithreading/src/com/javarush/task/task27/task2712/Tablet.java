@@ -18,30 +18,27 @@ public class Tablet extends Observable {
     }
 
     public Order createOrder() {
-        setChanged();
         Order order = null;
-        AdvertisementManager advertisementManager = null;
         try {
             order = new Order(this);
-            advertisementManager = new AdvertisementManager(order.getTotalCookingTime() * 60);
-            System.out.println(order.toString());
-            advertisementManager.processVideos();
+            if (!order.isEmpty()) {
+                setChanged();
+                notifyObservers(order);
+                ConsoleHelper.writeMessage(order.toString());
+                AdvertisementManager adManager = new AdvertisementManager(order.getTotalCookingTime() * 60);
+                adManager.processVideos();
+            }
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Console is unavailable.");
         } catch (NoVideoAvailableException e) {
             logger.log(Level.INFO, "No video is available for the order " + order);
+        } finally {
+            return order;
         }
-        if (!order.isEmpty()) {
-            notifyObservers(order);
-        }
-
-        return order;
     }
 
     @Override
     public String toString() {
-        return "Tablet{" +
-                "number=" + number +
-                '}';
+        return String.format("Tablet{number=%d}", number);
     }
 }

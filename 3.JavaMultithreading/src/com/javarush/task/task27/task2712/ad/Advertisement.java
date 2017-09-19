@@ -7,7 +7,6 @@ public class Advertisement {
     private int hits;
     private int duration;
     private long amountPerOneDisplaying;
-    private int amountPerSecond;
 
     public Advertisement(Object content, String name, long initialAmount, int hits, int duration) {
         this.content = content;
@@ -15,7 +14,7 @@ public class Advertisement {
         this.initialAmount = initialAmount;
         this.hits = hits;
         this.duration = duration;
-        amountPerOneDisplaying = initialAmount / hits;
+        this.amountPerOneDisplaying = initialAmount / hits;
     }
 
     public String getName() {
@@ -31,17 +30,7 @@ public class Advertisement {
     }
 
     public void revalidate() {
-        if (hits < 1) {
-            throw new UnsupportedOperationException();
-        }
+        if (hits <= 0) throw new NoVideoAvailableException();
         hits--;
-    }
-
-    public int getHits() {
-        return hits;
-    }
-
-    public int getAmountPerSecond() {
-        return amountPerSecond;
     }
 }

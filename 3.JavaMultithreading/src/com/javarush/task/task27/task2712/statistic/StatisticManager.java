@@ -9,30 +9,32 @@ import java.util.List;
 import java.util.Map;
 
 public class StatisticManager {
-    private static StatisticManager instance;
     private StatisticStorage statisticStorage = new StatisticStorage();
+    private static StatisticManager instance = new StatisticManager();
+
+    public static StatisticManager getInstance() {
+        return instance;
+    }
 
     private StatisticManager() {
     }
 
-    public static StatisticManager getInstance() {
-        if (instance == null) {
-            instance = new StatisticManager();
-        }
-        return instance;
-    }
-
     public void register(EventDataRow data) {
-
+        if (data != null)
+            statisticStorage.put(data);
     }
 
-    private static class StatisticStorage {
-        private Map<EventType, List<EventDataRow>> storage = new HashMap<>();
+    private class StatisticStorage {
+        private Map<EventType, List<EventDataRow>> storage = new HashMap<EventType, List<EventDataRow>>();
 
-        public StatisticStorage() {
+        private StatisticStorage() {
             for (EventType eventType : EventType.values()) {
                 storage.put(eventType, new ArrayList<EventDataRow>());
             }
+        }
+
+        private void put(EventDataRow data) {
+            storage.get(data.getType()).add(data);
         }
     }
 }
