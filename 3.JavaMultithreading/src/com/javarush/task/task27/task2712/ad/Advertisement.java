@@ -7,6 +7,7 @@ public class Advertisement {
     private int hits;
     private int duration;
     private long amountPerOneDisplaying;
+    private int amountPerSecond;
 
     public Advertisement(Object content, String name, long initialAmount, int hits, int duration) {
         this.content = content;
@@ -34,5 +35,13 @@ public class Advertisement {
             throw new UnsupportedOperationException();
         }
         hits--;
+    }
+
+    public int getHits() {
+        return hits;
+    }
+
+    public int getAmountPerSecond() {
+        return amountPerSecond;
     }
 }
