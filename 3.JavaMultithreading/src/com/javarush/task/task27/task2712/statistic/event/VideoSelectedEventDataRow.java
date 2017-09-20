@@ -5,6 +5,9 @@ import com.javarush.task.task27.task2712.ad.Advertisement;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Created by Serhii Boiko on 08.07.2017.
+ */
 public class VideoSelectedEventDataRow implements EventDataRow {
     private List<Advertisement> optimalVideoSet;
     private long amount;
@@ -16,6 +19,10 @@ public class VideoSelectedEventDataRow implements EventDataRow {
         this.amount = amount;
         this.totalDuration = totalDuration;
         this.currentDate = new Date();
+    }
+
+    public void setCurrentDate(Date currentDate) {
+        this.currentDate = currentDate;
     }
 
     @Override
@@ -31,5 +38,9 @@ public class VideoSelectedEventDataRow implements EventDataRow {
     @Override
     public int getTime() {
         return totalDuration;
+    }
+
+    public long getAmount() {
+        return amount;
     }
 }

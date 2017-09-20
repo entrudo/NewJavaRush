@@ -1,5 +1,8 @@
 package com.javarush.task.task27.task2712.ad;
 
+/**
+ * Created by Sukora Stas.
+ */
 public class Advertisement {
     private Object content;
     private String name;
@@ -17,6 +20,18 @@ public class Advertisement {
         this.amountPerOneDisplaying = initialAmount / hits;
     }
 
+    public Object getContent() {
+        return content;
+    }
+
+    public long getInitialAmount() {
+        return initialAmount;
+    }
+
+    public int getHits() {
+        return hits;
+    }
+
     public String getName() {
         return name;
     }
@@ -30,7 +45,7 @@ public class Advertisement {
     }
 
     public void revalidate() {
-        if (hits <= 0) throw new NoVideoAvailableException();
+        if (hits < 1) throw new UnsupportedOperationException();
         hits--;
     }
 }

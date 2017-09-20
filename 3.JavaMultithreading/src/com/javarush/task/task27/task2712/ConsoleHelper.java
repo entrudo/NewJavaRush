@@ -8,36 +8,47 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by Sukora Stas.
+ */
 public class ConsoleHelper {
-    private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
 
     public static void writeMessage(String message) {
         System.out.println(message);
     }
 
+
     public static String readString() throws IOException {
-        String s = "null";
-        try {
-            s = br.readLine();
-        } catch (IOException e) {
-            throw e;
-        }
-        return s;
+
+        return reader.readLine();
     }
 
     public static List<Dish> getAllDishesForOrder() throws IOException {
-        List<Dish> dishes = new ArrayList<>();
-        writeMessage("Please, enter the dish name (" + Dish.allDishesToString() + ") OR type 'exit' to complete the order");
+
+        List<Dish> listDish = new ArrayList<>();
+
+        String str = "";
+        writeMessage("Выберите блюдо:\n" + Dish.allDishesToString());
+
+
         while (true) {
-            String dish = readString().trim();
-            if (dish.equalsIgnoreCase("exit"))
+
+            str = readString();
+            if (str.equalsIgnoreCase("exit")) {
                 break;
-            try {
-                dishes.add(Dish.valueOf(dish));
-            } catch (IllegalArgumentException e) {
-                writeMessage("Sorry, we don't have that dish");
+            } else {
+                try {
+                    listDish.add(Dish.valueOf(str));
+                } catch (IllegalArgumentException e) {
+                    writeMessage(str + " is not detected");
+                }
             }
         }
-        return dishes;
+
+        return listDish;
     }
+
 }
