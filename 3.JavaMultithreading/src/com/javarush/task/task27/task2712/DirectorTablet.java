@@ -7,9 +7,6 @@ import com.javarush.task.task27.task2712.statistic.StatisticManager;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-/**
- * Created by Sukora Stas.
- */
 public class DirectorTablet {
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
 
