@@ -5,23 +5,21 @@ import com.javarush.task.task27.task2712.statistic.StatisticManager;
 import com.javarush.task.task27.task2712.statistic.event.CookedOrderEventDataRow;
 
 import java.util.Observable;
-import java.util.Observer;
 
-public class Cook extends Observable implements Observer {
+public class Cook extends Observable {
     private String name;
 
     public Cook(String name) {
         this.name = name;
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-        int coolingTime = ((Order) arg).getTotalCookingTime();
-        ConsoleHelper.writeMessage("Start cooking - " + arg.toString() + ", cooking time " + coolingTime + "min");
-        StatisticManager.getInstance().register(new CookedOrderEventDataRow(((Order) arg).getTablet().toString(),
-                this.name, ((Order) arg).getTotalCookingTime(), ((Order) arg).getDishes()));
+    void startCookingOrder(Order order) {
+        int coolingTime = (order).getTotalCookingTime();
+        ConsoleHelper.writeMessage("Start cooking - " + order.toString() + ", cooking time " + coolingTime + "min");
+        StatisticManager.getInstance().register(new CookedOrderEventDataRow((order).getTablet().toString(),
+                this.name, (order).getTotalCookingTime(), (order).getDishes()));
         setChanged();
-        notifyObservers(arg);
+        notifyObservers(order);
     }
 
     @Override

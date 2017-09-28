@@ -15,14 +15,15 @@ public class Restaurant {
 
         Locale.setDefault(Locale.ENGLISH);
         List<Tablet> tabletList = new ArrayList<>();
+        OrderManager orderManager = new OrderManager();
 
         Cook cook = new Cook("Amigo");
         Cook cookVasia = new Cook("Vasia");
 
         for (int i = 1; i <= 5; i++) {
             Tablet tablet = new Tablet(i);
-            tablet.addObserver(cook);
-            tablet.addObserver(cookVasia);
+            tablet.addObserver(orderManager);
+            tablet.addObserver(orderManager);
             tabletList.add(tablet);
         }
 
