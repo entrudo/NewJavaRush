@@ -9,9 +9,6 @@ import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * Created by Sukora Stas.
- */
 public class Tablet extends Observable {
     final int number;
     private static Logger logger = Logger.getLogger(Tablet.class.getName());

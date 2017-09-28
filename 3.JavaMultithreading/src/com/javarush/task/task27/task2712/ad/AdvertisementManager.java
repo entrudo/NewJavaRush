@@ -10,9 +10,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-/**
- * Created by Sukora Stas.
- */
 public class AdvertisementManager {
     public final AdvertisementStorage storage = AdvertisementStorage.getInstance();
     private int timeSeconds;
