@@ -7,6 +7,9 @@ import com.javarush.task.task27.task2712.statistic.event.CookedOrderEventDataRow
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * Created by Sukora Stas.
+ */
 public class Cook extends Observable implements Observer {
     private String name;
 

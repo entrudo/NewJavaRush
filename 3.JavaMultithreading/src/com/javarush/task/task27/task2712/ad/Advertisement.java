@@ -1,5 +1,8 @@
 package com.javarush.task.task27.task2712.ad;
 
+/**
+ * Created by Sukora Stas.
+ */
 public class Advertisement {
     private Object content;
     private String name;

@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * Created by Sukora Stas.
+ */
 public class StatisticAdvertisementManager {
     private static StatisticAdvertisementManager ourInstance = new StatisticAdvertisementManager();
     private AdvertisementStorage storage = AdvertisementStorage.getInstance();

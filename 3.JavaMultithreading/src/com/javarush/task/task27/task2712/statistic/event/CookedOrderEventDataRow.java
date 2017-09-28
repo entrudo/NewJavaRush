@@ -5,6 +5,9 @@ import com.javarush.task.task27.task2712.kitchen.Dish;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Created by Serhii Boiko on 08.07.2017.
+ */
 public class CookedOrderEventDataRow implements EventDataRow {
     private String tabletName;
     private String cookName;
