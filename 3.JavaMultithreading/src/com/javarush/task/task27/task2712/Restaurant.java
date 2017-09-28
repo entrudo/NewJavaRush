@@ -2,7 +2,10 @@ package com.javarush.task.task27.task2712;
 
 import com.javarush.task.task27.task2712.kitchen.Cook;
 import com.javarush.task.task27.task2712.kitchen.Waiter;
+import com.javarush.task.task27.task2712.statistic.StatisticManager;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class Restaurant {
@@ -11,15 +14,30 @@ public class Restaurant {
     public static void main(String[] args) throws Exception {
 
         Locale.setDefault(Locale.ENGLISH);
-//        ConsoleHelper.writeMessage(Dish.allDishesToString());
-//        ConsoleHelper.writeMessage(ConsoleHelper.getAllDishesForOrder().toString());
-//        new Tablet(5).createOrder();
+        List<Tablet> tabletList = new ArrayList<>();
 
-        Tablet tablet = new Tablet(5);
         Cook cook = new Cook("Amigo");
-        cook.addObserver(new Waiter());
-        tablet.addObserver(cook);
-        tablet.createOrder();
+        Cook cookVasia = new Cook("Vasia");
+
+        for (int i = 1; i <= 5; i++) {
+            Tablet tablet = new Tablet(i);
+            tablet.addObserver(cook);
+            tablet.addObserver(cookVasia);
+            tabletList.add(tablet);
+        }
+
+        Waiter waiter = new Waiter();
+        StatisticManager.getInstance().register(cookVasia);
+        StatisticManager.getInstance().register(cook);
+        cook.addObserver(waiter);
+        cookVasia.addObserver(waiter);
+
+        Thread randomOrderGeneratorTask = new Thread(new RandomOrderGeneratorTask(tabletList,
+                ORDER_CREATING_INTERVAL));
+        randomOrderGeneratorTask.start();
+
+        Thread.sleep(1000);
+        randomOrderGeneratorTask.interrupt();
 
         DirectorTablet directorTablet = new DirectorTablet();
         directorTablet.printActiveVideoSet();

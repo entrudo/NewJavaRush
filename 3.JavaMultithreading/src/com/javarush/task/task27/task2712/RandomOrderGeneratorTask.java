@@ -6,9 +6,9 @@ public class RandomOrderGeneratorTask implements Runnable {
     private int interval;
     private List<Tablet> numberOfTablet;
 
-    public RandomOrderGeneratorTask(int interval, List<Tablet> numberOfTablet) {
+    public RandomOrderGeneratorTask(List<Tablet> tablets, int interval) {
         this.interval = interval;
-        this.numberOfTablet = numberOfTablet;
+        this.numberOfTablet = tablets;
     }
 
     @Override
