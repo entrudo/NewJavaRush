@@ -6,12 +6,11 @@ import com.javarush.task.task27.task2712.kitchen.Order;
 import com.javarush.task.task27.task2712.kitchen.TestOrder;
 
 import java.io.IOException;
-import java.util.Observable;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Tablet extends Observable {
+public class Tablet {
     public final int number;
     private static java.util.logging.Logger logger = Logger.getLogger(Tablet.class.getName());
     private LinkedBlockingQueue<Order> queue;
