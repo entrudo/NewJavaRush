@@ -35,25 +35,4 @@ public class StatisticAdvertisementManager {
         }
         return result;
     }
-
-
-//    public static void main(String[] args) {
-//        Map<String, Integer> res = new TreeMap<String, Integer>();
-//        res.put("second", 10);
-//        res.put("First", 10);
-//        res.put("четвертое", 10);
-//        res.put("xxx", 10);
-//        res.put("third", 10);
-//        for (Map.Entry<String, Integer> m : res.entrySet()) {
-//            ConsoleHelper.writeMessage(m.getKey() + " " + m.getValue());
-//        }
-//        List<String> r = new ArrayList<String>();
-//        r.add("second");
-//        r.add("First");
-//        r.add("четвертое");
-//        r.add("xxx");
-//        r.add("third");
-//        Collections.sort(r);
-//        ConsoleHelper.writeMessage(r.toString());
-//    }
 }
