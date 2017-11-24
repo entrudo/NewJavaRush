@@ -1,9 +1,12 @@
 package com.javarush.task.task33.task3307;
 
+import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import java.io.IOException;
+import java.io.StringReader;
 
 /* 
 Десериализация XML объекта
@@ -16,7 +19,12 @@ public class Solution {
     }
 
     public static <T> T convertFromXmlToNormal(String xmlData, Class<T> clazz) throws IOException, JAXBException {
-        return null;
+        StringReader reader = new StringReader(xmlData);
+
+        JAXBContext context = JAXBContext.newInstance(clazz);
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+
+        return (T) unmarshaller.unmarshal(reader);
     }
 
     @XmlType(name = "cat")

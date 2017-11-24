@@ -3,6 +3,8 @@ package com.javarush.task.task33.task3306;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.io.IOException;
 import java.io.StringWriter;
 
@@ -52,11 +54,15 @@ public class Solution {
         public String name;
     }
 
+    @XmlType(name = "cat")
+    @XmlRootElement
     public static class Cat extends Pet {
         public int age;
         public int weight;
     }
 
+    @XmlType(name = "dog")
+    @XmlRootElement
     public static class Dog extends Pet {
         public int age;
         public String owner;

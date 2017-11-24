@@ -1,7 +1,14 @@
 package com.javarush.task.task33.task3305;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import java.util.List;
 
+@JsonTypeInfo(use = JsonTypeInfo.Id.MINIMAL_CLASS, property = "className")
+@JsonSubTypes(@JsonSubTypes.Type(value = Parking.class))
+@JsonAutoDetect
 public class Parking {
     public String name;
     public String city;
