@@ -1,6 +1,6 @@
 package com.javarush.task.task25.task2515;
 
-public class Ufo extends BaseObject {
+public class Rocket extends BaseObject {
     @Override
     public void move() {
 
