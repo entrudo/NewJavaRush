@@ -10,7 +10,6 @@ public class SpaceShip extends BaseObject {
 
     }
 
-    @Override
     public void draw() {
 
     }
