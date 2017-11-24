@@ -46,4 +46,14 @@ public class Space {
     public void setShip(SpaceShip ship) {
         this.ship = ship;
     }
+
+    public void run() {
+    }
+
+    public void draw() {
+    }
+
+    public void sleep(int ms) {
+    }
+
 }
