@@ -109,6 +109,9 @@ public class Space {
     public void createUfo() {
         //тут нужно создать новый НЛО.
         //1 раз за 10 вызовов метода.
+        if (ufos.isEmpty()) {
+            ufos.add(new Ufo(height, width));
+        }
     }
 
     /**
@@ -118,6 +121,16 @@ public class Space {
      */
     public void checkBombs() {
         //тут нужно проверить все возможные столкновения для каждой бомбы.
+        for (BaseObject baseObject : new ArrayList<>(bombs)) {
+            if (baseObject.getY() > height) {
+                baseObject.die();
+            }
+
+            if (baseObject.isIntersect(ship)) {
+                ship.die();
+                baseObject.die();
+            }
+        }
     }
 
     /**
@@ -127,6 +140,18 @@ public class Space {
      */
     public void checkRockets() {
         //тут нужно проверить все возможные столкновения для каждой ракеты.
+        for (BaseObject baseObject : new ArrayList<>(rockets)) {
+            for (Ufo ufo : ufos) {
+                if (baseObject.isIntersect(ufo)) {
+                    baseObject.die();
+                    ufo.die();
+                }
+            }
+
+            if (baseObject.getY() < 0) {
+                baseObject.die();
+            }
+        }
     }
 
     /**
@@ -135,6 +160,23 @@ public class Space {
     public void removeDead() {
         //тут нужно удалить все умершие объекты из списков.
         //Кроме космического корабля - по нему определяем ищет еще игра или нет.
+        for (BaseObject baseObject : new ArrayList<>(ufos)) {
+            if (!baseObject.isAlive()) {
+                ufos.remove(baseObject);
+            }
+        }
+
+        for (BaseObject baseObject : new ArrayList<>(rockets)) {
+            if (!baseObject.isAlive()) {
+                rockets.remove(baseObject);
+            }
+        }
+
+        for (BaseObject baseObject : new ArrayList<>(bombs)) {
+            if (!baseObject.isAlive()) {
+                bombs.remove(baseObject);
+            }
+        }
     }
 
     /**
