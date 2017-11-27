@@ -121,7 +121,7 @@ public class Space {
      */
     public void checkBombs() {
         for (Bomb bomb : bombs) {
-            if (ship.isIntersec(bomb)) {
+            if (ship.isIntersect(bomb)) {
                 ship.die();
                 bomb.die();
             }
@@ -139,7 +139,7 @@ public class Space {
     public void checkRockets() {
         for (Rocket rocket : rockets) {
             for (Ufo ufo : ufos) {
-                if (ufo.isIntersec(rocket)) {
+                if (ufo.isIntersect(rocket)) {
                     ufo.die();
                     rocket.die();
                 }
