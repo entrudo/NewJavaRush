@@ -1,30 +1,37 @@
 package com.javarush.task.task37.task3707;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.*;
 
-public class AmigoSet<E> extends AbstractSet<E> implements Serializable, Cloneable, Set<E> {
+public class AmigoSet<E> extends AbstractSet implements Serializable, Cloneable, Set {
+
     private static final Object PRESENT = new Object();
+
     private transient HashMap<E, Object> map;
 
-    public AmigoSet() {
-        this.map = new HashMap<E, Object>();
+    AmigoSet() {
+        map = new HashMap<>();
     }
 
-    public AmigoSet(int capacity) {
+    AmigoSet(Collection<? extends E> collection) {
+        int capacity = Math.max(16, (int) (collection.size() / .75f + 1));
         map = new HashMap<>(capacity);
+        this.addAll(collection);
     }
 
 
-    public AmigoSet(Collection<? extends E> collection) {
-        map = new HashMap<>(Math.max((int) (collection.size() / .75f) + 1, 16));
-        addAll(collection);
+    @Override
+    public boolean add(Object o) {
+        Object obj = map.put((E) o, PRESENT);
+        return obj == null;
     }
 
     @Override
     public Iterator iterator() {
-        Set<E> keySet = map.keySet();
-        return keySet.iterator();
+        return map.keySet().iterator();
     }
 
     @Override
@@ -32,10 +39,12 @@ public class AmigoSet<E> extends AbstractSet<E> implements Serializable, Cloneab
         return map.size();
     }
 
-    @Override
-    public boolean add(E e) {
-        return map.put(e, PRESENT) == null;
-    }
+    /*
+* boolean isEmpty()
+* boolean contains(Object o)
+* void clear()
+* boolean remove(Object o)
+     */
 
     @Override
     public boolean isEmpty() {
@@ -43,8 +52,13 @@ public class AmigoSet<E> extends AbstractSet<E> implements Serializable, Cloneab
     }
 
     @Override
-    public boolean contains(Object o) {
-        return map.containsKey(o);
+    public boolean contains(Object object) {
+        return super.contains(object);
+    }
+
+    @Override
+    public boolean remove(Object object) {
+        return super.remove(object);
     }
 
     @Override
@@ -53,22 +67,46 @@ public class AmigoSet<E> extends AbstractSet<E> implements Serializable, Cloneab
     }
 
     @Override
-    public boolean remove(Object o) {
-        map.remove(o);
-        return super.remove(o);
-    }
-
-    @Override
-    public Object clone() throws CloneNotSupportedException {
-        AmigoSet copy;
+    public Object clone() {
         try {
-            copy = (AmigoSet) super.clone();
-            copy.map = (HashMap) map.clone();
+            AmigoSet<E> cloneSet = new AmigoSet<>(this);
+            cloneSet.map = (HashMap<E, Object>) map.clone();
+            return cloneSet;
         } catch (Exception e) {
             throw new InternalError(e);
         }
-
-        return copy;
-
     }
+
+    private void writeObject(ObjectOutputStream objectOutputStream) throws IOException {
+
+        /*
+Для сериализации:
+* сериализуй сет
+* сериализуй capacity и loadFactor у объекта map, они понадобятся для десериализации.
+Т.к. эти данные ограничены пакетом, то воспользуйся утилитным классом HashMapReflectionHelper, чтобы достать их.
+        */
+        objectOutputStream.defaultWriteObject();
+        int capacity = HashMapReflectionHelper.callHiddenMethod(map, "capacity");
+        float loadFactor = HashMapReflectionHelper.callHiddenMethod(map, "loadFactor");
+        int size = map.size();
+        objectOutputStream.writeInt(capacity);
+        objectOutputStream.writeFloat(loadFactor);
+        objectOutputStream.writeInt(size);
+        Set<E> set = map.keySet();
+        for (E element : set) {
+            objectOutputStream.writeObject(element);
+        }
+    }
+
+    private void readObject(ObjectInputStream objectInputStream) throws IOException, ClassNotFoundException {
+        objectInputStream.defaultReadObject();
+        int capacity = objectInputStream.readInt();
+        float loadFactor = objectInputStream.readFloat();
+        int size = objectInputStream.readInt();
+        map = new HashMap<>(capacity, loadFactor);
+        for (int i = 0; i < size; i++) {
+            map.put((E) objectInputStream.readObject(), PRESENT);
+        }
+    }
+
 }
