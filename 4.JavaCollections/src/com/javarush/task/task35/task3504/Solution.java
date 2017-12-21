@@ -6,10 +6,10 @@ import java.util.LinkedHashMap;
 /* 
 Простой generics
 */
-public class Solution {
+public class Solution<T extends HashMap> {
     private HashMap map;
 
-    public Solution(HashMap map) {
+    public Solution(T map) {
         this.map = map;
     }
 

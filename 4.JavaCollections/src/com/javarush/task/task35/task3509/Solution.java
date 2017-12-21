@@ -14,18 +14,34 @@ public class Solution {
     public static void main(String[] args) {
     }
 
-    public static ArrayList newArrayList(Object... elements) {
+    public static <T> ArrayList<T> newArrayList(T... elements) {
         //напишите тут ваш код
-        return null;
+        ArrayList<T> res = new ArrayList<>();
+        for (T elm : elements)
+            res.add(elm);
+
+        return res;
     }
 
-    public static HashSet newHashSet(Object... elements) {
+    public static <T> HashSet<T> newHashSet(T... elements) {
         //напишите тут ваш код
-        return null;
+        HashSet<T> res = new HashSet<>();
+        for (T elm : elements)
+            res.add(elm);
+
+        return res;
     }
 
-    public static HashMap newHashMap(List keys, List values) {
+    public static <K, V> HashMap<K, V> newHashMap(List<? extends K> keys, List<? extends V> values) {
         //напишите тут ваш код
-        return null;
+        if (keys.size() != values.size())
+            throw new IllegalArgumentException();
+
+        HashMap<K, V> res = new HashMap<>();
+        for (int i = 0; i < keys.size(); i++) {
+            res.put(keys.get(i), values.get(i));
+        }
+
+        return res;
     }
 }
