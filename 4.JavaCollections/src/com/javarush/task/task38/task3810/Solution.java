@@ -1,6 +1,6 @@
 package com.javarush.task.task38.task3810;
 
-/* 
+/*
 Реализуй аннотации
 */
 
