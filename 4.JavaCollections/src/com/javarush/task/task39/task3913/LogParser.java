@@ -3,13 +3,9 @@ package com.javarush.task.task39.task3913;
 import com.javarush.task.task39.task3913.query.*;
 
 import java.io.File;
-import java.io.FilenameFilter;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -17,183 +13,36 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LogParser implements IPQuery, UserQuery, DateQuery, EventQuery, QLQuery {
-
     private Path logDir;
-    private List<String> linesList;
-
     public LogParser(Path logDir) {
         this.logDir = logDir;
-        linesList = getLinesList();
     }
-
-    private List<String> getLinesList() {
-        String[] files = logDir.toFile().list(new FilenameFilter() {
-            @Override
-            public boolean accept(File dir, String name) {
-                return name.endsWith(".log");
-            }
-        });
-
-        List<String> lines = new ArrayList<>();
-        for (String file : files) {
-            try {
-                lines.addAll(Files.readAllLines(Paths.get(logDir + File.separator + file), Charset.defaultCharset()));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return lines;
-    }
-
-    private void addStringEntity(Date after, Date before, Set<String> enteties, String[] parts, int part) {
-        long lineDateTime = getDate(parts[2]).getTime();
-
-        if (isCompatibleDate(lineDateTime, after, before)) {
-            enteties.add(parts[part]);
-        }
-    }
-
-    private void addDateEntity(Date after, Date before, Set<Date> enteties, String[] parts) {
-        Date lineDate = getDate(parts[2]);
-        long lineDateTime = getDate(parts[2]).getTime();
-
-        if (isCompatibleDate(lineDateTime, after, before)) {
-            enteties.add(lineDate);
-        }
-    }
-
-    private void addEventEntity(Date after, Date before, Set<Event> enteties, String[] parts) {
-        Event lineEvent = Event.valueOf(parts[3].split(" ")[0]);
-        long lineDateTime = getDate(parts[2]).getTime();
-
-        if (isCompatibleDate(lineDateTime, after, before)) {
-            enteties.add(lineEvent);
-        }
-    }
-
-    private boolean isCompatibleDate(long lineDateTime, Date after, Date before) {
-        if (after == null && before == null) {
-            return true;
-        } else if (after == null) {
-            if (lineDateTime <= before.getTime()) {
-                return true;
-            }
-        } else if (before == null) {
-            if (lineDateTime >= after.getTime()) {
-                return true;
-            }
-        } else {
-            if (lineDateTime >= after.getTime() && lineDateTime <= before.getTime()) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private Date getDate(String part) {
-        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.ENGLISH);
-        Date date = null;
-        try {
-            date = dateFormat.parse(part);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return date;
-    }
-
     @Override
     public int getNumberOfUniqueIPs(Date after, Date before) {
         return getUniqueIPs(after, before).size();
     }
-
     @Override
     public Set<String> getUniqueIPs(Date after, Date before) {
-        Set<String> uniqueIPs = new HashSet<>();
-
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-
-            addStringEntity(after, before, uniqueIPs, parts, 0);
-        }
-        return uniqueIPs;
+        return getIpSet(null, after, before);
     }
-
     @Override
     public Set<String> getIPsForUser(String user, Date after, Date before) {
-        Set<String> IPsForUser = new HashSet<>();
-
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-
-            if (user.equals(parts[1])) {
-                addStringEntity(after, before, IPsForUser, parts, 0);
-            }
-        }
-        return IPsForUser;
+        return getIpSet(user, after, before);
     }
-
     @Override
     public Set<String> getIPsForEvent(Event event, Date after, Date before) {
-        Set<String> IPsForEvent = new HashSet<>();
-
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-
-            if (event.toString().equals(parts[3].split(" ")[0])) {
-                addStringEntity(after, before, IPsForEvent, parts, 0);
-            }
-        }
-        return IPsForEvent;
+        return getIpSet(event, after, before);
     }
-
     @Override
     public Set<String> getIPsForStatus(Status status, Date after, Date before) {
-        Set<String> IPsForEvent = new HashSet<>();
-
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-
-            if (status.toString().equals(parts[4])) {
-                addStringEntity(after, before, IPsForEvent, parts, 0);
-            }
-        }
-        return IPsForEvent;
+        return getIpSet(status, after, before);
     }
-
     @Override
     public Set<String> getAllUsers() {
         Set<String> users = new HashSet<>();
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-            if (!users.contains(parts[1]))
-                users.add(parts[1]);
-        }
-        return users;
-    }
-
-    @Override
-    public int getNumberOfUserEvents(String user, Date after, Date before) {
-
-        Set<String> userEvents = new HashSet<>();
-
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-
-            if (user.equals(parts[1])) {
-                addStringEntity(after, before, userEvents, parts, 3);
-            }
-        }
-        return userEvents.size();
-    }
-
-    @Override
-    public Set<String> getUsersForIP(String ip, Date after, Date before) {
-        Set<String> users = new HashSet<>();
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-
-            if (ip.equals(parts[0]) && !users.contains(parts[1])) {
-                addStringEntity(after, before, users, parts, 1);
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (!users.contains(record.getUser())) {
+                users.add(record.getUser());
             }
         }
         return users;
@@ -202,634 +51,578 @@ public class LogParser implements IPQuery, UserQuery, DateQuery, EventQuery, QLQ
     @Override
     public int getNumberOfUsers(Date after, Date before) {
         Set<String> users = new HashSet<>();
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-            if (!users.contains(parts[1]))
-                addStringEntity(after, before, users, parts, 1);
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate()) && !users.contains(record.getUser())) {
+                users.add(record.getUser());
+            }
         }
         return users.size();
     }
-
     @Override
-    public Set<String> getLoggedUsers(Date after, Date before) {
-        Set<String> loggedUsers = new HashSet<>();
-
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-
-            if (Event.LOGIN.toString().equals(parts[3])) {
-                addStringEntity(after, before, loggedUsers, parts, 1);
+    public int getNumberOfUserEvents(String user, Date after, Date before) {
+        Set<Event> set = new HashSet<>();
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate())) {
+                if (record.getUser().equals(user)) set.add(record.getEvent());
             }
         }
-        return loggedUsers;
+        return set.size();
     }
-
+    @Override
+    public Set<String> getUsersForIP(String ip, Date after, Date before) {
+        Set<String> users = new HashSet<>();
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate()) && record.getIp().equals(ip)) {
+                users.add(record.getUser());
+            }
+        }
+        return users;
+    }
+    @Override
+    public Set<String> getLoggedUsers(Date after, Date before) {
+        Set<String> users = new HashSet<>();
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate()) && record.getEvent().equals(Event.LOGIN)) {
+                users.add(record.getUser());
+            }
+        }
+        return users;
+    }
     @Override
     public Set<String> getDownloadedPluginUsers(Date after, Date before) {
         Set<String> users = new HashSet<>();
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-            if (parts[3].equals(Event.DOWNLOAD_PLUGIN.toString()))
-                addStringEntity(after, before, users, parts, 1);
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate()) && record.getEvent().equals(Event.DOWNLOAD_PLUGIN)) {
+                users.add(record.getUser());
+            }
         }
         return users;
     }
-
     @Override
     public Set<String> getWroteMessageUsers(Date after, Date before) {
         Set<String> users = new HashSet<>();
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-            if (parts[3].equals(Event.WRITE_MESSAGE.toString()))
-                addStringEntity(after, before, users, parts, 1);
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate()) && record.getEvent().equals(Event.WRITE_MESSAGE)) {
+                users.add(record.getUser());
+            }
         }
         return users;
     }
-
-
-    /**
-     * 2.1. Метод getAllUsers() должен возвращать всех пользователей.
-     * ?2.2. Метод getNumberOfUsers() должен возвращать количество уникальных пользователей.
-     * 2.3. Метод getNumberOfUserEvents() должен возвращать количество событий от определенного пользователя.
-     * 2.4. Метод getUsersForIP() должен возвращать пользователей с определенным IP.
-     * Несколько пользователей могут использовать один и тот же IP.
-     * 2.5. Метод getLoggedUsers() должен возвращать пользователей, которые были залогинены.
-     * 2.6. Метод getDownloadedPluginUsers() должен возвращать пользователей, которые скачали плагин.
-     * 2.7. Метод getWroteMessageUsers() должен возвращать пользователей, которые отправили сообщение.
-     * 2.8. Метод getSolvedTaskUsers(Date after, Date before) должен возвращать пользователей, которые решали любую задачу.
-     * 2.9. Метод getSolvedTaskUsers(Date after, Date before, int task) должен возвращать пользователей, которые решали задачу с номером task.
-     * 2.10. Метод getDoneTaskUsers(Date after, Date before) должен возвращать пользователей, которые решали любую задачу.
-     * 2.11. Метод getDoneTaskUsers(Date after, Date before, int task) должен возвращать пользователей, которые решали задачу с номером task.
-     */
-
     @Override
     public Set<String> getSolvedTaskUsers(Date after, Date before) {
         Set<String> users = new HashSet<>();
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-            if (parts[3].split(" ")[0].equals(Event.SOLVE_TASK.toString()))
-                addStringEntity(after, before, users, parts, 1);
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate()) && record.getEvent().equals(Event.SOLVE_TASK)) {
+                users.add(record.getUser());
+            }
         }
         return users;
     }
-
     @Override
     public Set<String> getSolvedTaskUsers(Date after, Date before, int task) {
         Set<String> users = new HashSet<>();
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-            if (parts[3].split(" ")[0].equals(Event.SOLVE_TASK.toString()) && Integer.parseInt(parts[3].split(" ")[1]) == task)
-                addStringEntity(after, before, users, parts, 1);
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate())
+                    && record.getEvent().equals(Event.SOLVE_TASK)
+                    && record.getTaskNumber() != null
+                    && !record.getTaskNumber().isEmpty()
+                    && Integer.parseInt(record.getTaskNumber()) == task) {
+                users.add(record.getUser());
+            }
         }
         return users;
     }
-
     @Override
     public Set<String> getDoneTaskUsers(Date after, Date before) {
         Set<String> users = new HashSet<>();
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-            if (parts[3].split(" ")[0].equals(Event.DONE_TASK.toString()))
-                addStringEntity(after, before, users, parts, 1);
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate()) && record.getEvent().equals(Event.DONE_TASK)) {
+                users.add(record.getUser());
+            }
         }
         return users;
     }
-
     @Override
     public Set<String> getDoneTaskUsers(Date after, Date before, int task) {
-
         Set<String> users = new HashSet<>();
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-            if (parts[3].split(" ")[0].equals(Event.DONE_TASK.toString()) && Integer.parseInt(parts[3].split(" ")[1]) == task)
-                addStringEntity(after, before, users, parts, 1);
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate())
+                    && record.getEvent().equals(Event.DONE_TASK)
+                    && record.getTaskNumber() != null
+                    && !record.getTaskNumber().isEmpty()
+                    && Integer.parseInt(record.getTaskNumber()) == task) {
+                users.add(record.getUser());
+            }
         }
         return users;
     }
-
-    /**
-     * 3.1. Метод getDatesForUserAndEvent() должен возвращать даты, когда определенный пользователь произвел определенное событие.
-     * 3.2. Метод getDatesWhenSomethingFailed() должен возвращать даты, когда любое событие не выполнилось (статус FAILED).
-     * 3.3. Метод getDatesWhenErrorHappened() должен возвращать даты, когда любое событие закончилось ошибкой (статус ERROR).
-     * 3.4. Метод getDateWhenUserLoggedFirstTime() должен возвращать дату, когда пользователь залогинился впервые за указанный период.
-     * Если такой даты в логах нет - null.
-     * 3.5. Метод getDateWhenUserSolvedTask() должен возвращать дату, когда пользователь впервые попытался решить определенную задачу.
-     * Если такой даты в логах нет - null.
-     * 3.6. Метод getDateWhenUserDoneTask() должен возвращать дату, когда пользователь впервые решил определенную задачу. Если такой даты в логах нет - null.
-     * 3.7. Метод getDatesWhenUserWroteMessage() должен возвращать даты, когда пользователь написал сообщение.
-     * 3.8. Метод getDatesWhenUserDownloadedPlugin() должен возвращать даты, когда пользователь скачал плагин.
-     */
     @Override
     public Set<Date> getDatesForUserAndEvent(String user, Event event, Date after, Date before) {
         Set<Date> dates = new HashSet<>();
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-
-            if (parts[1].equals(user) && parts[3].split(" ")[0].equals(event.toString()) && !dates.contains(getDate(parts[2]).getTime()))
-                addDateEntity(after, before, dates, parts);
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate()) && user.equals(record.getUser()) && record.getEvent().equals(event)) {
+                dates.add(record.date);
+            }
         }
         return dates;
     }
-
     @Override
     public Set<Date> getDatesWhenSomethingFailed(Date after, Date before) {
         Set<Date> dates = new HashSet<>();
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-
-            if (parts[4].equals(Status.FAILED.toString()))
-                addDateEntity(after, before, dates, parts);
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate()) && record.getStatus().equals(Status.FAILED)) {
+                dates.add(record.date);
+            }
         }
         return dates;
     }
-
     @Override
     public Set<Date> getDatesWhenErrorHappened(Date after, Date before) {
         Set<Date> dates = new HashSet<>();
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-
-            if (parts[4].equals(Status.ERROR.toString()))
-                addDateEntity(after, before, dates, parts);
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate()) && record.getStatus().equals(Status.ERROR)) {
+                dates.add(record.date);
+            }
         }
         return dates;
     }
-
     @Override
     public Date getDateWhenUserLoggedFirstTime(String user, Date after, Date before) {
-        Date dateWhenUserLoggedFirstTime = new Date(Long.MAX_VALUE);
-        boolean isDateChanged = false;
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-            if (user.equals(parts[1]) && Event.LOGIN.toString().equals(parts[3])) {
-                if (getDate(parts[2]).getTime() < dateWhenUserLoggedFirstTime.getTime() && isCompatibleDate(getDate(parts[2]).getTime(), after, before)) {
-                    dateWhenUserLoggedFirstTime = getDate(parts[2]);
-                    isDateChanged = true;
-                }
+        Date date = null;
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate()) && record.getUser().equals(user) && record.getEvent().equals(Event.LOGIN)) {
+                if (date == null) date = record.getDate();
+                else date = date.compareTo(record.getDate()) > 0 ? record.getDate() : date;
             }
         }
-        return isDateChanged ? dateWhenUserLoggedFirstTime : null;
+        return date;
     }
-
     @Override
     public Date getDateWhenUserSolvedTask(String user, int task, Date after, Date before) {
-        Date dateWhenUserSolvedTaskFirstTime = new Date(Long.MAX_VALUE);
-        boolean isDateChanged = false;
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-            if (user.equals(parts[1])
-                    && Event.SOLVE_TASK.toString().equals(parts[3].split(" ")[0])
-                    && Integer.parseInt(parts[3].split(" ")[1]) == task) {
-                if (getDate(parts[2]).getTime() < dateWhenUserSolvedTaskFirstTime.getTime() && isCompatibleDate(getDate(parts[2]).getTime(), after, before)) {
-                    dateWhenUserSolvedTaskFirstTime = getDate(parts[2]);
-                    isDateChanged = true;
-                }
+        Date date = null;
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate())
+                    && record.getUser().equals(user)
+                    && record.getEvent().equals(Event.SOLVE_TASK)
+                    && record.getTaskNumber() != null
+                    && !record.getTaskNumber().isEmpty()
+                    && Integer.parseInt(record.getTaskNumber()) == task) {
+                if (date == null) date = record.getDate();
+                else date = date.compareTo(record.getDate()) > 0 ? record.getDate() : date;
             }
         }
-        return isDateChanged ? dateWhenUserSolvedTaskFirstTime : null;
+        return date;
     }
-
     @Override
     public Date getDateWhenUserDoneTask(String user, int task, Date after, Date before) {
-        Date dateWhenUserDoneTaskFirstTime = new Date(Long.MAX_VALUE);
-        boolean isDateChanged = false;
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-            if (user.equals(parts[1]) && Event.DONE_TASK.toString().equals(parts[3].split(" ")[0])
-                    && Integer.parseInt(parts[3].split(" ")[1]) == task) {
-
-                if (getDate(parts[2]).getTime() < dateWhenUserDoneTaskFirstTime.getTime() && isCompatibleDate(getDate(parts[2]).getTime(), after, before)) {
-                    dateWhenUserDoneTaskFirstTime = getDate(parts[2]);
-                    isDateChanged = true;
-                }
+        Date date = null;
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate())
+                    && record.getUser().equals(user)
+                    && record.getEvent().equals(Event.DONE_TASK)
+                    && record.getTaskNumber() != null
+                    && !record.getTaskNumber().isEmpty()
+                    && Integer.parseInt(record.getTaskNumber()) == task) {
+                if (date == null) date = record.getDate();
+                else date = date.compareTo(record.getDate()) > 0 ? record.getDate() : date;
             }
         }
-        return isDateChanged ? dateWhenUserDoneTaskFirstTime : null;
+        return date;
     }
-
     @Override
     public Set<Date> getDatesWhenUserWroteMessage(String user, Date after, Date before) {
-        return null;
+        Set<Date> dates = new HashSet<>();
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate())
+                    && record.getUser().equals(user)
+                    && record.getEvent().equals(Event.WRITE_MESSAGE)) {
+                dates.add(record.date);
+            }
+        }
+        return dates;
     }
-
     @Override
     public Set<Date> getDatesWhenUserDownloadedPlugin(String user, Date after, Date before) {
-        return null;
+        Set<Date> dates = new HashSet<>();
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate())
+                    && record.getUser().equals(user)
+                    && record.getEvent().equals(Event.DOWNLOAD_PLUGIN)) {
+                dates.add(record.date);
+            }
+        }
+        return dates;
     }
-
-
     @Override
     public int getNumberOfAllEvents(Date after, Date before) {
         return getAllEvents(after, before).size();
     }
-
     @Override
     public Set<Event> getAllEvents(Date after, Date before) {
-        Set<Event> userEvents = new HashSet<>();
-
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-
-            addEventEntity(after, before, userEvents, parts);
-
+        Set<Event> set = new HashSet<>();
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate())) {
+                set.add(record.getEvent());
+            }
         }
-        return userEvents;
+        return set;
     }
-
     @Override
     public Set<Event> getEventsForIP(String ip, Date after, Date before) {
-        Set<Event> userEvents = new HashSet<>();
-
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-            if (parts[0].equals(ip))
-                addEventEntity(after, before, userEvents, parts);
-
+        Set<Event> set = new HashSet<>();
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate()) && record.getIp().equals(ip)) {
+                set.add(record.getEvent());
+            }
         }
-        return userEvents;
+        return set;
     }
-
     @Override
     public Set<Event> getEventsForUser(String user, Date after, Date before) {
-        Set<Event> userEvents = new HashSet<>();
-
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-            if (parts[1].equals(user))
-                addEventEntity(after, before, userEvents, parts);
-
+        Set<Event> set = new HashSet<>();
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate()) && record.getUser().equals(user)) {
+                set.add(record.getEvent());
+            }
         }
-        return userEvents;
+        return set;
     }
-
     @Override
     public Set<Event> getFailedEvents(Date after, Date before) {
-        Set<Event> userEvents = new HashSet<>();
-
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-            if (parts[4].equals(Status.FAILED.toString()))
-                addEventEntity(after, before, userEvents, parts);
-
+        Set<Event> set = new HashSet<>();
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate()) && record.getStatus().equals(Status.FAILED)) {
+                set.add(record.getEvent());
+            }
         }
-        return userEvents;
+        return set;
     }
-
     @Override
     public Set<Event> getErrorEvents(Date after, Date before) {
-        Set<Event> userEvents = new HashSet<>();
-
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-            if (parts[4].equals(Status.ERROR.toString()))
-                addEventEntity(after, before, userEvents, parts);
-
+        Set<Event> set = new HashSet<>();
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate()) && record.getStatus().equals(Status.ERROR)) {
+                set.add(record.getEvent());
+            }
         }
-        return userEvents;
+        return set;
     }
-
     @Override
     public int getNumberOfAttemptToSolveTask(int task, Date after, Date before) {
-        int number = 0;
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-            if (parts[3].split(" ")[0].equals(Event.SOLVE_TASK.toString()) && Integer.parseInt(parts[3].split(" ")[1]) == task
-                    && isCompatibleDate(getDate(parts[2]).getTime(), after, before))
-                number++;
+        int i = 0;
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate())
+                    && record.getEvent().equals(Event.SOLVE_TASK)
+                    && record.getTaskNumber() != null
+                    && !record.getTaskNumber().isEmpty()
+                    && Integer.parseInt(record.getTaskNumber()) == task) {
+                i++;
+            }
         }
-        return number;
+        return i;
     }
-
     @Override
     public int getNumberOfSuccessfulAttemptToSolveTask(int task, Date after, Date before) {
-        int number = 0;
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-            if (parts[3].split(" ")[0].equals(Event.DONE_TASK.toString()) && Integer.parseInt(parts[3].split(" ")[1]) == task
-                    && isCompatibleDate(getDate(parts[2]).getTime(), after, before))
-                number++;
+        int i = 0;
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate())
+                    && record.getEvent().equals(Event.DONE_TASK)
+                    && record.getTaskNumber() != null
+                    && !record.getTaskNumber().isEmpty()
+                    && Integer.parseInt(record.getTaskNumber()) == task) {
+                i++;
+            }
         }
-        return number;
+        return i;
     }
-
     @Override
     public Map<Integer, Integer> getAllSolvedTasksAndTheirNumber(Date after, Date before) {
-        Map<Integer, Integer> map = new HashMap<>();
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-            if (parts[3].split(" ")[0].equals(Event.SOLVE_TASK.toString())
-                    && isCompatibleDate(getDate(parts[2]).getTime(), after, before)) {
-                Integer key = Integer.valueOf(parts[3].split(" ")[1]);
-                if (!map.containsKey(key))
-                    map.put(key, 1);
-                else {
-                    Integer value = map.get(key).intValue();
-                    map.remove(key);
-                    map.put(key, ++value);
+        Map<Integer, Integer> taskSolved = new HashMap<>();
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate()) && record.getEvent().equals(Event.SOLVE_TASK)) {
+                int task = Integer.parseInt(record.getTaskNumber());
+                if (taskSolved.containsKey(task)) {
+                    taskSolved.put(task, taskSolved.get(task) + 1);
+                } else {
+                    taskSolved.put(task, 1);
                 }
             }
         }
-        return map;
+        return taskSolved;
     }
-
     @Override
     public Map<Integer, Integer> getAllDoneTasksAndTheirNumber(Date after, Date before) {
-        Map<Integer, Integer> map = new HashMap<>();
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-            if (parts[3].split(" ")[0].equals(Event.DONE_TASK.toString())
-                    && isCompatibleDate(getDate(parts[2]).getTime(), after, before)) {
-                Integer key = Integer.valueOf(parts[3].split(" ")[1]);
-                if (!map.containsKey(key))
-                    map.put(key, 1);
-                else {
-                    Integer value = map.get(key).intValue();
-                    map.remove(key);
-                    map.put(key, ++value);
+        Map<Integer, Integer> taskSolved = new HashMap<>();
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate()) && record.getEvent().equals(Event.DONE_TASK)) {
+                int task = Integer.parseInt(record.getTaskNumber());
+                if (taskSolved.containsKey(task)) {
+                    taskSolved.put(task, taskSolved.get(task) + 1);
+                } else {
+                    taskSolved.put(task, 1);
                 }
             }
         }
-        return map;
+        return taskSolved;
     }
-
-    /**
-     * 5.1. Реализуй интерфейс QLQuery у класса LogParser. Метод execute() пока должен поддерживать только следующие запросы:
-     * 5.1.1. get ip
-     * 5.1.2. get user
-     * 5.1.3. get date
-     * 5.1.4. get event
-     * 5.1.5. get status
-     * <p>
-     * Пример: Вызов метода execute("get ip") должен вернуть Set<String>, содержащий все уникальные IP из лога
-     * (это будет: 127.0.0.1, 12.12.12.12, 146.34.15.5, 192.168.100.2 для тестового файла). Аналогично должны работать и другие запросы.
-     * <p>
-     * Реальные объекты в возвращаемом множестве должны быть типа String для запросов ip и user,
-     * для запроса date - тип объектов Date, для event и status - Event и Status соответственно.
-     * <p>
-     * 2. Вызов метода execute("get ip") класса LogParser должен возвращать множество (Set) содержащее все уникальные IP адреса.
-     * 3. Вызов метода execute("get user") класса LogParser должен возвращать множество (Set) содержащее всех уникальных пользователей.
-     * 4. Вызов метода execute("get date") класса LogParser должен возвращать множество (Set) содержащее все уникальные даты.
-     * 5. Вызов метода execute("get event") класса LogParser должен возвращать множество (Set) содержащее все уникальные события.
-     * 6. Вызов метода execute("get status") класса LogParser должен возвращать множество (Set) содержащее все уникальные статусы.
-     */
     @Override
     public Set<Object> execute(String query) {
-
-        String field1 = "";
-        String field2 = "";
-        String value1 = "";
-        String value2 = "";
-        String value3 = "";
-
-        List<String> values = new ArrayList<>();
-        Pattern pattern = Pattern.compile("\"[\\w \\.:]+\"");
-        Matcher matcher = pattern.matcher(query);
-        while (matcher.find()) {
-            values.add(matcher.group().replace("\"", ""));
-        }
-
-        if (query.split(" ").length > 2) {
-            field1 = query.split(" ")[1];
-            field2 = query.split(" ")[3];
-            value1 = values.get(0);
-            if (values.size() > 1) {
-                value2 = values.get(1);
-                value3 = values.get(2);
+        Set<Object> res = new HashSet<>();
+        if (query == null || query.isEmpty()) return res;
+        Pattern p = Pattern.compile("get (ip|user|date|event|status)"
+                + "( for (ip|user|date|event|status) = \"(.*?)\")?"
+                + "( and date between \"(.*?)\" and \"(.*?)\")?");
+        Matcher m = p.matcher(query);
+        String field1 = null;
+        String field2 = null;
+        String value1 = null;
+        Date dateFrom = null;
+        Date dateTo = null;
+        if (m.find()) {
+            field1 = m.group(1);
+            field2 = m.group(3);
+            value1 = m.group(4);
+            String d1 = m.group(6);
+            String d2 = m.group(7);
+            try {
+                dateFrom = new SimpleDateFormat("d.M.yyyy H:m:s").parse(d1);
+            } catch (Exception e) {
+                dateFrom = null;
             }
-        }
-
-        Set<Object> querySet = new HashSet<>();
-        for (String line : linesList) {
-            String[] lineParts = line.split("\\t");
-            if (values.size() == 0) {
-                switch (query) {
-                    case "get ip":
-                        querySet.add(lineParts[0]);
-                        break;
-                    case "get user":
-                        querySet.add(lineParts[1]);
-                        break;
-                    case "get date":
-                        Date date = getDate(lineParts[2]);
-                        querySet.add(date);
-                        break;
-                    case "get event":
-                        Event event = Event.valueOf(lineParts[3].split(" ")[0]);
-                        querySet.add(event);
-                        break;
-                    case "get status":
-                        Status status = Status.valueOf(lineParts[4]);
-                        querySet.add(status);
-                        break;
+            try {
+                dateTo = new SimpleDateFormat("d.M.yyyy H:m:s").parse(d2);
+            } catch (Exception e) {
+                dateTo = null;
+            }
+            switch (field1) {
+                case "ip": {
+                    res.addAll(getAllIps(field2, value1, dateFrom, dateTo));
+                    break;
                 }
-            } else {
-                switch (field1) {
-                    case "ip":
-                        switch (field2) {
-                            case "ip":
-                            case "user":
-                            case "date":
-                            case "status":
-                                if (value1.equals(lineParts[getField2Index(field2)])) {
-                                    if (values.size() == 3) {
-                                        Date date = getDate(lineParts[2]);
-                                        if (isCompatibleDate(date.getTime(), getDate(value2), getDate(value3))) {
-                                            querySet.add(lineParts[0]);
-                                        }
-                                    } else {
-                                        querySet.add(lineParts[0]);
-                                    }
-                                }
-                                break;
-                            case "event":
-                                if (value1.equals(lineParts[3].split(" ")[0])) {
-                                    if (values.size() == 3) {
-                                        Date date = getDate(lineParts[2]);
-                                        if (isCompatibleDate(date.getTime(), getDate(value2), getDate(value3))) {
-                                            querySet.add(lineParts[0]);
-                                        }
-                                    } else {
-                                        querySet.add(lineParts[0]);
-                                    }
-                                }
-                                break;
-                        }
-                        break;
-                    case "user":
-                        switch (field2) {
-                            case "ip":
-                            case "user":
-                            case "date":
-                            case "status":
-                                if (value1.equals(lineParts[getField2Index(field2)])) {
-                                    if (values.size() == 3) {
-                                        Date date = getDate(lineParts[2]);
-                                        if (isCompatibleDate(date.getTime(), getDate(value2), getDate(value3))) {
-                                            querySet.add(lineParts[1]);
-                                        }
-                                    } else {
-                                        querySet.add(lineParts[1]);
-                                    }
-                                }
-                                break;
-                            case "event":
-                                if (value1.equals(lineParts[3].split(" ")[0])) {
-                                    if (values.size() == 3) {
-                                        Date date = getDate(lineParts[2]);
-                                        if (isCompatibleDate(date.getTime(), getDate(value2), getDate(value3))) {
-                                            querySet.add(lineParts[1]);
-                                        }
-                                    } else {
-                                        querySet.add(lineParts[1]);
-                                    }
-                                }
-                                break;
-                        }
-                        break;
-                    case "date":
-                        switch (field2) {
-                            case "ip":
-                            case "user":
-                            case "date":
-                            case "status":
-                                if (value1.equals(lineParts[getField2Index(field2)])) {
-                                    if (values.size() == 3) {
-                                        Date date = getDate(lineParts[2]);
-                                        if (isCompatibleDate(date.getTime(), getDate(value2), getDate(value3))) {
-                                            date = getDate(lineParts[2]);
-                                            querySet.add(date);
-                                        }
-                                    } else {
-                                        Date date = getDate(lineParts[2]);
-                                        querySet.add(date);
-                                    }
-                                }
-                                break;
-                            case "event":
-                                if (value1.equals(lineParts[3].split(" ")[0])) {
-                                    if (values.size() == 3) {
-                                        Date date = getDate(lineParts[2]);
-                                        if (isCompatibleDate(date.getTime(), getDate(value2), getDate(value3))) {
-                                            date = getDate(lineParts[2]);
-                                            querySet.add(date);
-                                        }
-                                    } else {
-                                        Date date = getDate(lineParts[2]);
-                                        querySet.add(date);
-                                    }
-                                }
-                                break;
-                        }
-                        break;
-                    case "event":
-                        switch (field2) {
-                            case "ip":
-                            case "user":
-                            case "date":
-                            case "status":
-                                if (value1.equals(lineParts[getField2Index(field2)])) {
-                                    if (values.size() == 3) {
-                                        Date date = getDate(lineParts[2]);
-                                        if (isCompatibleDate(date.getTime(), getDate(value2), getDate(value3))) {
-                                            Event event = Event.valueOf(lineParts[3].split(" ")[0]);
-                                            querySet.add(event);
-                                        }
-                                    } else {
-                                        Event event = Event.valueOf(lineParts[3].split(" ")[0]);
-                                        querySet.add(event);
-                                    }
-                                }
-                                break;
-                            case "event":
-                                if (value1.equals(lineParts[3].split(" ")[0])) {
-                                    if (values.size() == 3) {
-                                        Date date = getDate(lineParts[2]);
-                                        if (isCompatibleDate(date.getTime(), getDate(value2), getDate(value3))) {
-                                            Event event = Event.valueOf(lineParts[3].split(" ")[0]);
-                                            querySet.add(event);
-                                        }
-                                    } else {
-                                        Event event = Event.valueOf(lineParts[3].split(" ")[0]);
-                                        querySet.add(event);
-                                    }
-                                }
-                                break;
-                        }
-                        break;
-                    case "status":
-                        switch (field2) {
-                            case "ip":
-                            case "user":
-                            case "date":
-                            case "status":
-                                if (value1.equals(lineParts[getField2Index(field2)])) {
-                                    if (values.size() == 3) {
-                                        Date date = getDate(lineParts[2]);
-                                        if (isCompatibleDate(date.getTime(), getDate(value2), getDate(value3))) {
-                                            Status status = Status.valueOf(lineParts[4]);
-                                            querySet.add(status);
-                                        }
-                                    } else {
-                                        Status status = Status.valueOf(lineParts[4]);
-                                        querySet.add(status);
-                                    }
-                                }
-                                break;
-                            case "event":
-                                if (value1.equals(lineParts[3].split(" ")[0])) {
-                                    if (values.size() == 3) {
-                                        Date date = getDate(lineParts[2]);
-                                        if (isCompatibleDate(date.getTime(), getDate(value2), getDate(value3))) {
-                                            Status status = Status.valueOf(lineParts[4]);
-                                            querySet.add(status);
-                                        }
-                                    } else {
-                                        Status status = Status.valueOf(lineParts[4]);
-                                        querySet.add(status);
-                                    }
-                                }
-                                break;
-                        }
-                        break;
+                case "user": {
+                    res.addAll(getAllUsers(field2, value1, dateFrom, dateTo));
+                    break;
+                }
+                case "date": {
+                    res.addAll(getAllDates(field2, value1, dateFrom, dateTo));
+                    break;
+                }
+                case "event": {
+                    res.addAll(getAllEvents(field2, value1, dateFrom, dateTo));
+                    break;
+                }
+                case "status": {
+                    res.addAll(getAllStatuses(field2, value1, dateFrom, dateTo));
+                    break;
                 }
             }
         }
-        return querySet;
+        return res;
     }
 
-    private int getField2Index(String field2) {
-        switch (field2) {
-            case "ip":
-                return 0;
-            case "user":
-                return 1;
-            case "date":
-                return 2;
-            case "event":
-                return 3;
-            case "status":
-                return 4;
+    private boolean isFieldMatch(String field, String value, LogRecord record) throws ParseException {
+        boolean criteria = false;
+        if (field == null) return true;
+        if (value == null) return false;
+        switch (field) {
+            case "ip": {
+                criteria = record.getIp().equals(value);
+                break;
+            }
+            case "user": {
+                criteria = record.getUser().equals(value);
+                break;
+            }
+            case "date": {
+                criteria = record.getDate().equals(new SimpleDateFormat("d.M.yyyy H:m:s").parse(value));
+                break;
+            }
+            case "event": {
+                criteria = record.getEvent().equals(Event.valueOf(value));
+                break;
+            }
+            case "status": {
+                criteria = record.getStatus().equals(Status.valueOf(value));
+                break;
+            }
         }
-        return -1;
+        return criteria;
     }
 
-    private Set<Status> getUniqueStatuses() {
-        Set<Status> statuses = new HashSet<>();
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-            if (!statuses.contains(Status.valueOf(parts[4])))
-                statuses.add(Status.valueOf(parts[4]));
+    private Set<String> getAllIps(String field, String value, Date after, Date before) {
+        Set<String> users = new HashSet<>();
+        for (LogRecord record : getParsedRecords(logDir)) {
+            try {
+                if (isDateInside(after, before, record.getDate()) && isFieldMatch(field, value, record)) {
+                    users.add(record.getIp());
+                }
+            } catch (ParseException e) {
+                //e.printStackTrace();
+            }
         }
-        return statuses;
+        return users;
     }
 
-    private Set<Date> getUniqueDates() {
+    private Set<Date> getAllDates(String field, String value, Date after, Date before) {
         Set<Date> dates = new HashSet<>();
-        for (String line : linesList) {
-            String[] parts = line.split("\\t");
-            if (!dates.contains(getDate(parts[2])))
-                dates.add(getDate(parts[2]));
+        for (LogRecord record : getParsedRecords(logDir)) {
+            try {
+                if (isDateInside(after, before, record.getDate()) && isFieldMatch(field, value, record)) {
+                    dates.add(record.date);
+                }
+            } catch (ParseException e) {
+                //e.printStackTrace();
+            }
         }
         return dates;
+    }
+
+    private Set<Status> getAllStatuses(String field, String value, Date after, Date before) {
+        Set<Status> set = new HashSet<>();
+        for (LogRecord record : getParsedRecords(logDir)) {
+            try {
+                if (isDateInside(after, before, record.getDate()) && isFieldMatch(field, value, record)) {
+                    set.add(record.getStatus());
+                }
+            } catch (ParseException e) {
+                //e.printStackTrace();
+            }
+        }
+        return set;
+    }
+
+    private Set<Event> getAllEvents(String field, String value, Date after, Date before) {
+        Set<Event> set = new HashSet<>();
+        for (LogRecord record : getParsedRecords(logDir)) {
+            try {
+                if (isDateInside(after, before, record.getDate()) && isFieldMatch(field, value, record)) {
+                    set.add(record.getEvent());
+                }
+            } catch (ParseException e) {
+                //e.printStackTrace();
+            }
+        }
+        return set;
+    }
+
+    private Set<String> getAllUsers(String field, String value, Date after, Date before) {
+        Set<String> users = new HashSet<>();
+        for (LogRecord record : getParsedRecords(logDir)) {
+            try {
+                if (isDateInside(after, before, record.getDate()) && isFieldMatch(field, value, record)) {
+                    users.add(record.getUser());
+                }
+            } catch (ParseException e) {
+                //e.printStackTrace();
+            }
+        }
+        return users;
+    }
+
+    private Set<String> getIpSet(Object recordField, Date after, Date before) {
+        Set<String> ipSet = new HashSet<>();
+        for (LogRecord record : getParsedRecords(logDir)) {
+            if (isDateInside(after, before, record.getDate()) && isFieldMatch(recordField, record)) {
+                ipSet.add(record.getIp());
+            }
+        }
+        return ipSet;
+    }
+
+    private List<LogRecord> getParsedRecords(Path logDir) {
+        List<LogRecord> recordList = new ArrayList<>();
+        try {
+            for (File file : logDir.toFile().listFiles()) {
+                if (file.isFile() && file.getName().toLowerCase().endsWith(".log"))
+                    for (String record : Files.readAllLines(file.toPath())) {
+                        recordList.add(new LogRecord(record));
+                    }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return recordList;
+    }
+
+    private boolean isFieldMatch(Object recordField, LogRecord record) {
+        boolean criteria = false;
+        if (recordField == null)
+            return true;
+        if (recordField instanceof String)
+            criteria = record.getUser().equals(recordField);
+        else if (recordField instanceof Event)
+            criteria = record.getEvent().equals(recordField);
+        else if (recordField instanceof Status)
+            criteria = record.getStatus().equals(recordField);
+        return criteria;
+    }
+
+    private boolean isDateInside(Date after, Date before, Date currentDate) {
+        if (after != null) {
+            if (currentDate.getTime() <= after.getTime())
+                return false;
+        }
+        if (before != null) {
+            if (currentDate.getTime() >= before.getTime())
+                return false;
+        }
+        return true;
+    }
+
+    private class LogRecord {
+        private String ip;
+        private String user;
+        private Date date;
+        private Event event;
+        private String taskNumber;
+        private Status status;
+
+        public LogRecord(String ip, String user, Date date, Event event, Status status) {
+            this.ip = ip;
+            this.user = user;
+            this.date = date;
+            this.event = event;
+            this.status = status;
+        }
+
+        public LogRecord(String record) {
+            String[] strings = record.split("\t");
+            this.ip = strings[0].trim();
+            this.user = strings[1];
+            SimpleDateFormat dateFormat = new SimpleDateFormat("d.M.yyyy H:m:s");
+            try {
+                date = dateFormat.parse(strings[2]);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            String eventAndParameter[] = strings[3].split(" ");
+            event = Event.valueOf(eventAndParameter[0]);
+            if (eventAndParameter.length > 1) taskNumber = eventAndParameter[1];
+            status = Status.valueOf(strings[4]);
+        }
+
+        public String getIp() {
+            return ip;
+        }
+
+        public String getUser() {
+            return user;
+        }
+
+        public Date getDate() {
+            return date;
+        }
+
+        public Event getEvent() {
+            return event;
+        }
+
+        public String getTaskNumber() {
+            return taskNumber;
+        }
+
+        public Status getStatus() {
+            return status;
+        }
     }
 }
