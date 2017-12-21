@@ -7,8 +7,10 @@ import com.javarush.task.task28.task2810.view.HtmlView;
 
 public class Aggregator {
     public static void main(String[] args) {
+
         Provider provider = new Provider(new HHStrategy());
         HtmlView view = new HtmlView();
+        view.get();
         Model model = new Model(view, provider);
         Controller controller = new Controller(model);
         view.setController(controller);
