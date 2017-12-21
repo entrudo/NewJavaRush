@@ -6,6 +6,10 @@ public class FileStorageStrategy implements StorageStrategy {
     private long bucketSizeLimit = 10000;
     private int size;
 
+    private static final long DEFAULT_BUCKET_SIZE_LIMIT = 10000;
+    //    private long bucketSizeLimit = DEFAULT_BUCKET_SIZE_LIMIT
+    private long maxBucketSize = 10000;
+
     public FileStorageStrategy() {
         for (int i = 0; i < DEFAULT_INITIAL_CAPACITY; i++) {
             table[i] = new FileBucket();
