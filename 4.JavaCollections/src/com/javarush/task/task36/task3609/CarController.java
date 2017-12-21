@@ -32,4 +32,22 @@ public class CarController {
     public void updateView() {
         view.printCarDetails(getCarBrand(), getCarModel(), getCarSpeed());
     }
+
+    public void speedUp(int seconds) {
+        if (model.getSpeed() < model.getMaxSpeed()) {
+            model.setSpeed(model.getSpeed() + (int) (3.5 * seconds));
+        }
+        if (model.getSpeed() > model.getMaxSpeed()) {
+            model.setSpeed(model.getMaxSpeed());
+        }
+    }
+
+    public void speedDown(int seconds) {
+        if (model.getSpeed() > 0) {
+            model.setSpeed(model.getSpeed() - (int) (12 * seconds));
+        }
+        if (model.getSpeed() < 0) {
+            model.setSpeed(0);
+        }
+    }
 }

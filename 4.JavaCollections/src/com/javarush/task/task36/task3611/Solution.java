@@ -1,5 +1,6 @@
 package com.javarush.task.task36.task3611;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /* 
@@ -21,6 +22,23 @@ public class Solution {
 
     public Set<Integer> getAllFriendsAndPotentialFriends(int index, int deep) {
         //напишите тут ваш код
+        Set<Integer> result = new HashSet<>();
+        if (deep == 0) return result;
+        for (int i = 0; i < humansRelationships.length; i++) {
+            if (i < index) {
+                if (humansRelationships[index][i]) {
+                    result.add(i);
+                    result.addAll(getAllFriendsAndPotentialFriends(i, deep - 1));
+                }
+            } else {
+                if (humansRelationships[i][index]) {
+                    result.add(i);
+                    result.addAll(getAllFriendsAndPotentialFriends(i, deep - 1));
+                }
+            }
+        }
+        result.remove(index);
+        return result;
     }
 
     //remove people from set, with which you have already had relationship
