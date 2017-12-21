@@ -23,6 +23,13 @@ public class Solution {
     }
 
     public static long swapBits(long number, int i, int j) {
+        long a = number >> i & 1;
+        long b = number >> j & 1;
+
+        if (a != b) {
+            number = number & ~((1 << i) | (1 << j)) | (a << j) | (b << i);
+        }
+
         return number;
     }
 }

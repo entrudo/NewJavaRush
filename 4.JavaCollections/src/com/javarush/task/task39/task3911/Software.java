@@ -1,6 +1,7 @@
 package com.javarush.task.task39.task3911;
 
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -25,6 +26,24 @@ public class Software {
     }
 
     public boolean rollback(int rollbackVersion) {
+        if (!versionHistoryMap.containsKey(rollbackVersion))
+
+            return false;
+
+
+        Iterator<Integer> iterator = versionHistoryMap.keySet().iterator();
+
+        while (iterator.hasNext())
+
+            if (iterator.next() > rollbackVersion)
+
+                iterator.remove();
+
+
+        currentVersion = rollbackVersion;
+
+
+
         return true;
     }
 }
